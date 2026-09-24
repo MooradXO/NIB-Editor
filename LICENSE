@@ -1,0 +1,122 @@
+NIB FREE USE AND GAME DISTRIBUTION LICENSE
+Version 1.0, 24 September 2026
+
+Copyright (c) 2026 Murad Mammadov. All rights reserved except as licensed below.
+Licensor and rights holder: Murad Mammadov, Azerbaijan.
+Author affiliation: CEO of ProjectAI. The Licensor under this agreement is
+Murad Mammadov personally; the affiliation does not transfer rights to ProjectAI.
+Official contact: https://github.com/MooradXO
+Official distribution: https://github.com/MooradXO/NIB-Editor
+
+This license does not replace rights already granted under an earlier license
+and does not relicense third-party work.
+
+1. Parties and scope
+
+The Licensor is Murad Mammadov, identified above.
+"NIB" means the editor, engine, bundled tools and documentation supplied by that
+Licensor with this license. "Runtime" means the NIB execution code included by an
+official NIB game export or expressly identified as redistributable runtime.
+"Game" means your game or other interactive application containing substantial
+original functionality and content, rather than a standalone game engine,
+general-purpose editor, software development kit, or collection of NIB assets.
+Third-party components are governed by their own licenses as explained below.
+
+2. Free use
+
+Subject to these terms, the Licensor grants you a worldwide, non-exclusive,
+royalty-free license to download, install and run official NIB builds, make
+reasonable backup copies, and create, test, modify and publish your Games.
+Personal, educational and commercial Games are permitted. No donation, revenue
+share, paid subscription, or purchase is required by this license.
+You may write and share your own game scripts, plugins, integrations and project
+files through NIB's documented interfaces, provided you have rights to their
+contents and do not redistribute NIB itself outside the permission below.
+
+3. Game runtime distribution
+
+You may reproduce and distribute the Runtime only as an embedded part of your
+Games, including paid Games, browser-hosted Games and Games delivered through
+stores, hosting providers, distributors and content delivery networks.
+You may permit those intermediaries to copy and host it solely to distribute
+your Game, and permit recipients to install and execute it as part of that Game.
+You may bundle, minify or compress the Runtime for deployment without changing
+its behavior or removing required legal notices. Your Game license must not
+grant independent ownership of or standalone rights to NIB's proprietary code.
+This permission does not cover redistributing the NIB editor, a reusable engine
+distribution, or a development service that exposes NIB editing tools to others.
+Additional written permission is required for those uses.
+
+4. Ownership and restrictions
+
+NIB is licensed, not sold. The Licensor retains ownership of NIB. No NIB source
+code license, trademark license or general sublicensing right is granted.
+Except as expressly permitted above or required by applicable law, you may not
+redistribute, sell, rent, sublicense, rebrand, or publish NIB or modified versions
+of NIB as an engine, editor or development kit; disclose NIB source code obtained
+without permission; or modify, reverse engineer, decompile or disassemble its
+proprietary components. You may not remove or falsify copyright, license or
+ownership notices. These restrictions do not prohibit making your own Games,
+debugging your game scripts, using documented extension interfaces, independently
+developing software without copying NIB, or activities protected by mandatory law.
+Where mandatory law permits an activity despite these restrictions, that law
+prevails. Access to a downloadable build alone is not access to source rights.
+
+5. Your work and third-party rights
+
+You retain the rights you hold in your original game code, project data and
+assets. This license does not claim ownership of them. It does not give you
+rights to content belonging to someone else or make your Game exclusive.
+Separately licensed libraries and assets remain governed by their original
+licenses. See THIRD-PARTY-LICENSES.txt and the accompanying license texts.
+Their permissions, including any rights to source, modification or redistribution,
+are not restricted by this license. If terms conflict for a third-party component,
+that component's original license controls. Preserve its required notices.
+Purchased effect packs and other external assets are not licensed to you by NIB.
+Obtain them from their owners and comply with their terms before redistributing.
+
+6. Notices
+
+Keep this license and the applicable third-party notices with copies of NIB and
+the Runtime that you distribute. An exported HTML file may retain them in its
+embedded legal banner; a multi-file Game may include them in a licenses file or
+credits/legal page accompanying the Game. No visible splash screen or promotion
+of NIB is required by this license. Do not imply endorsement by the Licensor.
+
+7. Term and future versions
+
+The permissions for the version supplied with this license continue while you
+comply with it. Terms for a later version do not retroactively change your rights
+under this license. Previously granted rights under Apache 2.0 or another license
+remain governed by those licenses; this document does not revoke them.
+If you materially breach these terms, the Licensor may terminate your rights
+after written notice and a reasonable opportunity of at least 30 days to cure,
+unless mandatory law requires different treatment. Distribution rights of
+recipients who lawfully received and comply with a Game license are unaffected
+solely by the developer's later breach. No termination transfers ownership of
+your Game to the Licensor.
+
+8. Donations and support
+
+Donations are optional support for development. They do not transfer ownership,
+purchase a different license, or promise features, support or a release date
+unless the Licensor separately agrees in writing. This license does not require
+the Licensor to supply updates, source code, hosting or technical support.
+
+9. Warranty and liability
+
+To the maximum extent permitted by applicable law, NIB is provided "AS IS" and
+"AS AVAILABLE", without express or implied warranties, including merchantability,
+fitness for a particular purpose or non-infringement. To that same extent, the
+Licensor is not liable for indirect, incidental, special or consequential damage,
+lost profits or lost data arising from NIB. Nothing in these terms excludes or
+limits liability or statutory consumer rights that cannot lawfully be excluded
+or limited. Back up your projects and evaluate NIB for your intended use.
+
+10. Interpretation
+
+No permission is granted by silence beyond the rights expressly stated here.
+If a term is unenforceable, the remainder applies to the extent lawful.
+This license governs the proprietary NIB version supplied with it; separate
+written agreements and mandatory law take precedence where applicable.
+For license questions or additional permissions, use the official contact above.

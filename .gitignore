@@ -1,0 +1,6 @@
+.cache/
+verification-secrets/
+*.zip
+*.tgz
+.env
+.env.*

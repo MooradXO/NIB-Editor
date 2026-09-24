@@ -1,0 +1,11 @@
+title = "NIB secret scanning"
+
+[extend]
+useDefault = true
+
+# This public Poly Haven texture identifier was manually verified in history.
+# Match the exact secret value, never an entire file, directory, rule or commit.
+[[allowlists]]
+description = "Poly Haven rocky_terrain_02 asset identifier, not a credential"
+regexTarget = "secret"
+regexes = ['''^rocky_terrain_02$''']

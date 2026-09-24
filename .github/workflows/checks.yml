@@ -1,0 +1,20 @@
+name: Distribution repository checks
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22.12.0
+      - name: Reject source code and unfinished licensing
+        run: node .github/scripts/check-tree.mjs
+      - name: Scan full history and current files
+        run: node .github/scripts/gitleaks.mjs all

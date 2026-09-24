@@ -1,0 +1,212 @@
+NIB THIRD-PARTY NOTICES
+=======================
+
+Distribution scope: this document retains the broader upstream inventory for
+attribution and audit context. The public documentation repository does not
+contain engine sources or build dependencies. The editor archive includes the
+runtime dependencies and release-preset assets identified below, but excludes
+the Blade Showcase models and development-only HDRI fixture. Paths below refer
+to the editor archive or upstream inventory, not to files in this documentation
+repository. Complete runtime license texts accompany this document in licenses/.
+
+This inventory describes direct dependencies and starter dependencies declared by this
+repository. Exact resolved versions are recorded in package-lock.json. Transitive dependency
+notices remain available in each installed npm package and in generated dependency inventories.
+
+RUNTIME AND OPTIONAL PEER DEPENDENCIES
+--------------------------------------
+
+@dimforge/rapier3d-compat 0.19.3
+Purpose: Rapier 3D physics backend. Its module bytes are embedded in the export runtime;
+the WASM engine initializes only when the backend is selected.
+Source: https://github.com/dimforge/rapier.js
+License: Apache-2.0
+Copyright: Copyright 2020 Dimforge EURL
+Complete bundled license: licenses/Apache-2.0-Rapier.txt
+
+meshoptimizer 1.2.0
+Purpose: Optional mesh simplification and automatic level-of-detail generation.
+Source: https://github.com/zeux/meshoptimizer
+License: MIT
+Copyright: Copyright (c) 2016-2026 Arseny Kapoulkine
+Complete bundled license: licenses/MIT-meshoptimizer.txt
+
+React 18 or newer
+Purpose: Optional peer dependency for the React adapter and React starter.
+Source: https://github.com/facebook/react
+License: MIT
+
+Vue 3 or newer
+Purpose: Optional peer dependency for the Vue adapter.
+Source: https://github.com/vuejs/core
+License: MIT
+
+Svelte 4 or newer
+Purpose: Optional peer dependency for the Svelte adapter.
+Source: https://github.com/sveltejs/svelte
+License: MIT
+
+DEVELOPMENT AND BUILD DEPENDENCIES
+----------------------------------
+
+Playwright 1.63.0
+Purpose: Development-only browser correctness smoke; not part of the runtime package.
+Source: https://github.com/microsoft/playwright
+License: Apache-2.0
+
+sharp 0.35.4
+Source: https://github.com/lovell/sharp
+License: Apache-2.0
+
+Svelte 5.57.1
+Source: https://github.com/sveltejs/svelte
+License: MIT
+
+TypeScript 6.0.3
+Source: https://github.com/microsoft/TypeScript
+License: Apache-2.0
+
+Vite 8.3.0 (root build tools); Vite 8.0.16 (portable exports and starters)
+Source: https://github.com/vitejs/vite
+License: MIT
+
+Vue 3.5.43
+Source: https://github.com/vuejs/core
+License: MIT
+
+The React starter also declares react, react-dom, and @vitejs/plugin-react. Their exact versions
+and licenses are resolved when the starter is installed.
+
+ASSETS
+------
+
+Poly Haven studio_small_09 1K HDR
+Source: https://polyhaven.com/a/studio_small_09
+Exact download: https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/1k/studio_small_09_1k.hdr
+License: CC0 1.0 Universal
+License statement: https://polyhaven.com/license
+Retrieved: 2026-08-10
+Distributed path: tools/fixtures/hdri/studio_small_09_1k.hdr
+Distributed bytes: 1,615,248
+Distributed SHA-256: e7cfda5f4e98e623db12b8bfd0184e048488e4855d9c83e2751fb44a32e80c45
+
+Blade Showcase katana models
+Generation operator and source custodian: MooradXO
+Generation service: Meshy AI, https://www.meshy.ai/
+Meshy plan used for generation: not recorded in this repository.
+Rights note: Meshy's current guidance distinguishes paid-plan ownership from free-plan CC BY 4.0
+licensing; this repository does not assert which ownership case applies.
+Ownership and licensing guidance: https://help.meshy.ai/en/articles/10137554-what-is-the-ownership-of-the-generated-models
+Tool terms: https://www.meshy.ai/terms-of-use
+Asset distribution terms used by this repository: Creative Commons Attribution 4.0 International
+(CC BY 4.0)
+License text: https://creativecommons.org/licenses/by/4.0/legalcode
+Required attribution: "Katana models generated with Meshy AI — CC BY 4.0. Source exports supplied by
+MooradXO; geometry and textures were modified for NIB."
+Source: private Meshy generation/export files retained by the generation operator.
+Modifications: geometry simplified to 55% of the source triangle count; embedded 4K JPEG channels
+were resized to 2K, embedded 2K JPEG channels were resized to 1K, and all embedded JPEGs were
+recompressed. No external buffers, textures, or decoder extensions are required.
+
+examples/katana_fire.glb
+Source bytes: 37,153,752
+Source triangles: 139,244
+Source SHA-256: 87132365e828217be11b80b873b9382dfe54b844e7d4da3953a0f23e610ca4e6
+Distributed bytes: 4,965,472
+Distributed triangles: 76,584
+Distributed SHA-256: acd9f826a3c71c39b4fc000d1dda26a46d92cd58551191c4e07f3a210870fdd8
+
+examples/katana_holy.glb
+Source bytes: 33,712,368
+Source triangles: 149,422
+Source SHA-256: e713d364a831a55747b37e72f5f43409c91e5f533e67281278b68d02662722ce
+Distributed bytes: 4,801,064
+Distributed triangles: 82,182
+Distributed SHA-256: 7e17af21cafac4b98c4b2806560d389a01e20828d13d7a964ad890c046ad5d30
+
+examples/katana_blood.glb
+Source bytes: 31,377,000
+Source triangles: 86,556
+Source SHA-256: ad488fa82cf4520e267490f756df4b575da58aacfcc29086ad8f0224b27b19d7
+Distributed bytes: 3,628,204
+Distributed triangles: 47,604
+Distributed SHA-256: fed6277b226cfad3edfaa248732f898eaf15299a2f256298b7304c3884eb4c32
+
+KayKit release-preset assets
+Creator: Kay Lousberg (KayKit)
+License: Creative Commons CC0 1.0 Universal
+License statement: the LICENSE file in each source repository
+Sources:
+- Dungeon Remastered: https://github.com/KayKit-Game-Assets/KayKit-Dungeon-Remastered-1.0
+- Character Pack Adventures: https://github.com/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0
+- Character Pack Skeletons: https://github.com/KayKit-Game-Assets/KayKit-Character-Pack-Skeletons-1.0
+Retrieved: 2026-08-21
+Modifications: none; the original GLB bytes are redistributed unchanged under stable local names.
+
+examples/presets/assets/kaykit/dungeon/wall_cracked.glb | 138,396 bytes | SHA-256 344fb9a709a51b7f04131fded75a5ad38e829d74fcf1784d848f3df0703f804c
+examples/presets/assets/kaykit/dungeon/pillar.glb | 25,552 bytes | SHA-256 e31da496461921475384c62ce761cd23924892bd6f32aeea68bd913545caee33
+examples/presets/assets/kaykit/dungeon/torch.glb | 29,380 bytes | SHA-256 608089ae00c5d5b51adbe702a689677b3fef0b29641030a44401188ce108a316
+examples/presets/assets/kaykit/dungeon/chest_gold.glb | 140,140 bytes | SHA-256 04708d5f88ed59d361c8a6cec1efe8b7028dbc641dfae0a1467f272e14a94b6e
+examples/presets/assets/kaykit/dungeon/barrel_large.glb | 44,292 bytes | SHA-256 9fae6a79056241baf253fe9272dc7a7ddb174e1caf153eb5013c58a596722148
+examples/presets/assets/kaykit/dungeon/stairs.glb | 43,368 bytes | SHA-256 5ba16e5d919aaa8958435c4b73c1f8a94c98febeacf716faa1359f24e6b27d70
+examples/presets/assets/kaykit/characters/Knight.glb | 3,659,532 bytes | SHA-256 60428e3abc09ba83e595d256e3af8c5c976b46cdae599f0802fc82b4a3445168
+examples/presets/assets/kaykit/characters/Mage.glb | 3,589,240 bytes | SHA-256 cf898585da33fab50c724d31605fb931eb2912e6d2280092141e98ca81ad507d
+examples/presets/assets/kaykit/characters/Skeleton_Warrior.glb | 4,863,620 bytes | SHA-256 178b6fda810b814c250d8a2010c24dfd9b458b9006dd323353e620b7ff118bbe
+examples/presets/assets/kaykit/characters/Skeleton_Minion.glb | 4,814,296 bytes | SHA-256 6ffc003f895bed0b074791e0e490846210a2e2f8fc7da300aba53cc185f95968
+
+RobotExpressive release-preset asset
+Original model: Tomás Laulhé
+Modifications and glTF preparation: Don McCurdy
+Source and license statement: https://github.com/mrdoob/three.js/tree/dev/examples/models/gltf/RobotExpressive
+License: Creative Commons CC0 1.0 Universal
+Retrieved: 2026-08-21
+Modifications by NIB: none; the current upstream GLB is redistributed unchanged.
+examples/presets/assets/threejs/RobotExpressive.glb | 463,988 bytes | SHA-256 047f5e5fb3bb6d378bd1df16ca6137f2a596c99b3a1b5690b4020c05aaf6f319
+
+Poly Haven release-preset PBR textures
+Source: https://polyhaven.com/textures
+Per-asset metadata API: https://api.polyhaven.com/files/{asset-id}
+License: Creative Commons CC0 1.0 Universal
+License statement: https://polyhaven.com/license
+Retrieved and verified against the official metadata API: 2026-08-21
+Modifications: none; the official 1K JPG bytes are redistributed unchanged.
+
+examples/presets/assets/polyhaven/pbr/forrest_ground_01/forrest_ground_01_diff_1k.jpg | 833,711 bytes | SHA-256 3dd6875cb3908e022a3c45ebbffa5e84c670ff2691fbbb6dc9ea4bff88523800
+examples/presets/assets/polyhaven/pbr/forrest_ground_01/forrest_ground_01_nor_gl_1k.jpg | 1,428,763 bytes | SHA-256 32528a7cdee962cc0b248ee4023a74d0df175737ea90e1eb425122351e0bdab4
+examples/presets/assets/polyhaven/pbr/forrest_ground_01/forrest_ground_01_rough_1k.jpg | 257,165 bytes | SHA-256 30d8b56a03d7b12da16f58011b675662a40e58e1cdc768119a5f03968140058c
+examples/presets/assets/polyhaven/pbr/aerial_grass_rock/aerial_grass_rock_diff_1k.jpg | 666,655 bytes | SHA-256 57b8041bfe0d0f01430e4dbaad45e7ddddf0a9fc97317f90dbc51f7b0d9e1b5d
+examples/presets/assets/polyhaven/pbr/aerial_grass_rock/aerial_grass_rock_nor_gl_1k.jpg | 904,956 bytes | SHA-256 1aa3e23bff453f152e089b9f83aa36b4901651e019f7e2ca01d5331a9bbbda78
+examples/presets/assets/polyhaven/pbr/aerial_grass_rock/aerial_grass_rock_rough_1k.jpg | 362,214 bytes | SHA-256 b9f3f76aba74007f708333c0dbe73c52eb83ea0c4187a13e2e994f888a25114a
+examples/presets/assets/polyhaven/pbr/aerial_beach_01/aerial_beach_01_diff_1k.jpg | 115,382 bytes | SHA-256 5b849983d08fda1c6d28b95b55851c2227697598721b25ff2b85e57cf8b04fc4
+examples/presets/assets/polyhaven/pbr/aerial_beach_01/aerial_beach_01_nor_gl_1k.jpg | 262,878 bytes | SHA-256 0133712fbe5de7389948150a6900a687707b93df4e6652b531b6e317b49737b3
+examples/presets/assets/polyhaven/pbr/aerial_beach_01/aerial_beach_01_rough_1k.jpg | 155,774 bytes | SHA-256 1c5ed28fc47821fea601da5f8793462fc1aebe009ea72c272b9c32ce5eb27ccf
+examples/presets/assets/polyhaven/pbr/rocky_terrain_02/rocky_terrain_02_diff_1k.jpg | 843,188 bytes | SHA-256 d570c10b1d5302f4fde9e0e94f4cbab0d5e112fc3fe2b3b91c38a98bd3ddaf4b
+examples/presets/assets/polyhaven/pbr/rocky_terrain_02/rocky_terrain_02_nor_gl_1k.jpg | 993,692 bytes | SHA-256 f4f9d9671c660f4e509e96d5da3091887dfd557e1353e313fa2d1dc789499ffd
+examples/presets/assets/polyhaven/pbr/rocky_terrain_02/rocky_terrain_02_rough_1k.jpg | 437,094 bytes | SHA-256 8652ee05de206888eb77f84df7c8080f6ffef27afadb7917127726570b66c45d
+examples/presets/assets/polyhaven/pbr/snow_field_aerial/snow_field_aerial_col_1k.jpg | 754,873 bytes | SHA-256 902e1fef8f1bcc2f158fbb118239e29159978fd7b8e241d2d0f404b8dbecf718
+examples/presets/assets/polyhaven/pbr/snow_field_aerial/snow_field_aerial_nor_gl_1k.jpg | 640,692 bytes | SHA-256 2037817e0166673e68039c4dd2c56fa014d6999e1d6d492e2e3e7e3cfec3862b
+examples/presets/assets/polyhaven/pbr/snow_field_aerial/snow_field_aerial_rough_1k.jpg | 497,955 bytes | SHA-256 f791ddb130aa9342afd91e4b988382674e58b180e403f25a34cf67c1fa78ee92
+
+Poly Haven release-preset models
+Sources: https://polyhaven.com/a/rock_07, https://polyhaven.com/a/boulder_01,
+https://polyhaven.com/a/shrub_01
+License: Creative Commons CC0 1.0 Universal
+License statement: https://polyhaven.com/license
+Retrieved: 2026-08-21
+Modifications: official 1K glTF geometry and JPG textures were repacked into self-contained GLB
+containers. No external buffers or textures remain; geometry and texture content were not reduced.
+
+examples/presets/assets/polyhaven/models/rock_07.glb | 2,129,572 bytes | SHA-256 88676b4e930987eeb4b1b31f8621d5f01404e2dc813a2d1e242c885317fb66d0
+examples/presets/assets/polyhaven/models/boulder_01.glb | 5,626,716 bytes | SHA-256 9015eb84edd572445451d30fb27c34eae3fc15fb573176e08e889bbcb3cacd47
+examples/presets/assets/polyhaven/models/shrub_01.glb | 5,752,748 bytes | SHA-256 4d30333754ae92011ac20f54c52e3461ca70b44d4546fab8febb44fa106c788a
+
+All 29 release-preset asset files are served locally by the Editor and copied into Web Project
+exports. The preset runtime does not depend on GitHub, Poly Haven, or another asset CDN.
+
+examples/demo2d contains source-only example content maintained with NIB. Any other optional model,
+texture, sprite, audio, or demo pack remains excluded until every included file has a verified author,
+canonical source, exact license, modification record, byte count, and SHA-256 checksum.
+
+Complete license texts for dependencies embedded in NIB runtime artifacts are stored in the
+repository and injected into export-runtime legal banners. This inventory does not replace any
+additional license terms shipped by other dependencies.
