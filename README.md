@@ -1,50 +1,98 @@
-# NIB
+# NIB — create and publish 2D and 3D games
 
-Created and owned by **Murad Mammadov**, CEO of **ProjectAI**, Azerbaijan.
-Free to use for personal and commercial games under the [NIB license](LICENSE).
+NIB is a **game engine and visual editor for building complete browser games**. Build your levels,
+control a player, add enemies and game rules, animate characters, create sound and effects, test the
+game, then export it for players. Visual tools handle scenes and resources; JavaScript scripts let
+you create your own gameplay. Playable presets give you a working starting point.
 
-NIB is a visual editor and native browser engine for making 2D and 3D games. Create a scene, add scripts, effects and animated characters, then export a standalone HTML game or a deployable web project.
+Created and owned by **Murad Mammadov**, CEO of **ProjectAI**, Azerbaijan. Free for personal and
+commercial game development under the [NIB license](LICENSE), with no mandatory subscription or royalties.
 
-## Try the editor
+## Download and start
 
-Download [NIB 1.0.0-rc.1 editor ZIP](https://github.com/MooradXO/NIB-Editor/releases/download/v1.0.0-rc.1/NIB-1.0.0-rc.1.zip) from [Releases](https://github.com/MooradXO/NIB-Editor/releases). Extract the complete archive, install Node.js 22.12 or newer, then run `npm start` inside the extracted folder. On Windows you can double-click `start.bat`.
+**NIB 1.0.0-rc.2 — official release candidate, not a stable release**
 
-Choose the named **NIB-1.0.0-rc.1.zip** asset. GitHub's automatic "Source code" downloads contain this documentation repository, not the editor. A SHA-256 checksum accompanies the editor archive. This first release is a **release candidate**, not a stable 1.0 release.
+Download the named [NIB-1.0.0-rc.2.zip editor archive](https://github.com/MooradXO/NIB-Editor/releases/download/v1.0.0-rc.2/NIB-1.0.0-rc.2.zip)
+from [Releases](https://github.com/MooradXO/NIB-Editor/releases). GitHub's automatic **Source code**
+downloads contain this documentation repository, not the editor. A SHA-256 checksum accompanies the archive.
 
-Open <http://localhost:8670/help.html> for the guided introduction, <http://localhost:8670/editor/> for the editor, or <http://localhost:8670/examples/demo2d/> for the sample game. There is no dependency installation step for the editor itself. Keep the terminal open while using it.
+1. Install **[Node.js 24 LTS](https://nodejs.org/en/download)** using the installer for your operating
+   system. Keep its **Add to PATH** option enabled. NIB requires Node.js **22.12 or newer**.
+2. Close and reopen your terminal after installation. Run `node --version`; it must show a supported
+   version. If Windows says `node` or `npm` is not recognized, finish this step before starting NIB.
+3. Extract the **whole** editor ZIP into a writable folder. On Windows, double-click **start.bat**.
+   Alternatively, open a terminal in that folder and run `npm start` (`npm.cmd start` if PowerShell
+   blocks `npm.ps1`). On macOS/Linux, you can run `sh start.sh`.
+4. Keep the terminal open. Open [the editor](http://localhost:8670/editor/),
+   [the guided introduction](http://localhost:8670/help.html) or [the sample game](http://localhost:8670/examples/demo2d/).
 
-Read [Getting started](GETTING_STARTED.md), [effects](docs/09-EFFECTS.md), [characters and animation](docs/10-CHARACTERS.md), and [MCP integration](docs/05-MCP-AI.md).
-
-See [release candidate notes](CHANGELOG.md) for the prepared scope and initial limitations.
+The editor needs **no `npm install`**, source checkout or build step. Read the full
+[Getting started guide](GETTING_STARTED.md) for setup, saving, exports and troubleshooting.
 
 ## What you can build
 
-- 2D and 3D scenes with scripts, physics, lighting, terrain, materials, audio and native WebGL2/WebGPU rendering.
-- Reusable effects with particle, geometry, trail, light and audio layers and resource dependencies.
-- Imported or custom character rigs, editable weights and saved animation clips with timed effect/audio events.
-- Games exported as portable HTML or web-project ZIP files, including the runtime and required resources.
-- Workflows controlled by a compatible local MCP client through the same validated editor commands.
+- **2D platformers:** movement, double jump, collision, hazards, moving platforms, collectibles,
+  checkpoints, lives and a finish condition. Start with **Neon Frontier** and adapt its game rules.
+- **Top-down action and survival games:** aiming, shooting, enemy waves, health, score and restart,
+  supported by sprites, particles, audio and game scripts.
+- **3D action, exploration and horror:** first-person control, raycast shooting, animated characters,
+  terrain, lighting, fog, spatial sound and scripted enemy behavior.
+- **Racing and vehicle games:** arcade driving and drift, chase cameras, checkpoints and lap timing.
+- **Dungeon and action RPG games:** click-to-move navigation, direct movement, combat, loot and
+  animated characters. **Storm Labyrinth** demonstrates a playable combination of these systems.
+- **Physics puzzles, card games and casual games:** rigid bodies and joints, sensors, mouse-driven
+  interaction, sprites/text and your own rules.
+- **Hybrid and stylized games:** a 3D world with a 2D HUD, procedural or imported art, painted surfaces,
+  foliage, reusable effects and retro rendering.
 
-## License and ownership
+These examples are supported starting points, not finished genre frameworks. Larger game systems
+such as quests, inventories and progression are authored in scripts. See the
+[complete capabilities and limits](docs/13-CAPABILITIES.md).
 
-The [NIB Free Use and Game Distribution License](LICENSE) permits free use, including commercial game development, and shipping the NIB runtime inside your Games. Murad Mammadov retains ownership of the engine and editor. Your original game code and content remain yours. Standalone redistribution, rebranding and engine forks are not permitted by this proprietary license, subject to mandatory law and separate third-party rights.
+## Tools for the whole game
 
-This public repository contains documentation, releases and issue reports. It does not contain the private engine source repository or its Git history. Third-party libraries and assets keep their original licenses; see [third-party notices](THIRD-PARTY-LICENSES.txt).
+| Area | What is included |
+|---|---|
+| Visual authoring | Hierarchy, Inspector, 2D/3D viewports, transform gizmos, prefabs, assets, script editor, Undo/Redo and Play/Stop. |
+| Gameplay | Entity/component model, JavaScript scripts, input APIs, player/vehicle/camera controllers, grid navigation, triggers and timelines. |
+| Graphics | Native WebGL2/WebGPU, sprites and text, PBR materials, lights/shadows, HDRI skies, terrain, foliage, surface painting, particles and post-processing. |
+| Physics | Built-in 2D and 3D simulation plus bundled Rapier for more capable 3D rigid bodies and joints. |
+| Characters | GLB import, imported/custom rigs, humanoid fitting, editable weights, animation clips, playback/blending and timed effect/audio events. |
+| Effects and audio | Reusable layered effects, procedural VFX, spatial sound, music, ambient zones, mixer buses, filters and reverb. |
+| Projects and delivery | Folder projects, asset import reports, save/reopen, active-scene Single HTML and Web Project ZIP exports with required runtime/resources. |
+| Optional AI workflow | A local MCP server with **62 MCP tools** for authoring, inspection, Play checks and export. |
 
-Purchased Epic Toon FX content is not bundled. Owners can import their own supported prepared catalog. Blade Showcase assets are omitted pending provenance. Minified browser code can still be inspected; closed source is not a claim of impossible extraction.
+Read [effects](docs/09-EFFECTS.md), [characters](docs/10-CHARACTERS.md) and
+[MCP integration](docs/05-MCP-AI.md). Players can open a hosted export in a browser without installing NIB or Node.js.
 
-## Release-candidate limits
+## Scope of this release candidate
 
-Desktop Chromium browsers are the initial editor target. WebGPU support depends on the browser/GPU; use WebGL2 when needed. The local editor and MCP are single-user tools and must not be exposed to the internet. Project scripts and authorized MCP clients can execute code in the editor.
+The editor initially targets **desktop Chromium browsers**. WebGPU depends on browser, GPU and
+project compatibility; Auto reports its choice and fallback reason. WebGL2 remains available.
+Exported games need testing on their intended devices. See [release notes](CHANGELOG.md).
 
-Character authoring does not currently include IK, automatic retargeting or an animation state graph. Humanoid fitting expects an upright T-pose and weights may need manual correction. Raw Unity prefabs and shaders do not execute directly. Wider browser/GPU coverage is still being expanded.
+Projects can contain multiple scenes; each export currently packages the **active scene**. There
+is no built-in multiplayer/cloud backend, automatic retargeter, animation state-graph editor or
+general IK authoring interface. Raw Unity prefabs/shaders do not execute directly. Refer to the
+capabilities guide for physics, asset, graphics and navigation limits.
 
-This download is the visual editor distribution. Framework-starter and source-build instructions apply to authorized source access; no public npm SDK is published by this release preparation.
+This is the compiled Editor distribution. The private source, Git history, public npm SDK and
+framework starters are not included. Purchased Epic Toon FX content and Blade Showcase models are
+also excluded. You can import your own supported assets with the necessary rights.
 
-Back up the installation's `projects/` directory before upgrading or replacing the editor folder.
+Back up the installation's **projects/** folder before upgrading. Keep the editor server and MCP
+local: they are single-user development tools. Project scripts and authorized MCP clients can
+execute code in the editor.
 
-## Report problems and support development
+## License, ownership and support
 
-Use Issues for reproducible bugs and suggestions. Include the NIB version, browser, graphics backend, steps and a small project you are allowed to share. Follow [SECURITY.md](SECURITY.md) for vulnerabilities; do not post credentials or private projects.
+The [NIB Free Use and Game Distribution License](LICENSE) permits commercial game development and
+shipping the runtime inside your games. Your original game code and content remain yours. NIB is
+proprietary: standalone redistribution, rebranding or engine/editor forks require separate permission,
+subject to mandatory law and separately licensed components. Preserve the runtime's legal notices;
+no NIB splash screen is required. See [third-party notices](THIRD-PARTY-LICENSES.txt).
 
-Support is voluntary. No donation link is configured yet. Bug reports, examples made with NIB and sharing the official release page also help. Official owner contact: [MooradXO](https://github.com/MooradXO).
+Report reproducible problems in [Issues](https://github.com/MooradXO/NIB-Editor/issues), including
+the version, browser, backend and steps. Follow [SECURITY.md](SECURITY.md) for vulnerabilities and
+[SUPPORT.md](SUPPORT.md) for support. Donations are voluntary; no donation link is configured.
+Official owner contact: [MooradXO](https://github.com/MooradXO).

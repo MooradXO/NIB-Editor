@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import { execFileSync } from 'node:child_process';
 import { readFileSync } from 'node:fs';
+import path from 'node:path';
 const paths = execFileSync('git', ['ls-files', '-z'], { encoding: 'utf8' }).split('\0').filter(Boolean);
 const allowed = /^(?:README\.md|GETTING_STARTED\.md|CHANGELOG\.md|LICENSE|THIRD-PARTY-LICENSES\.txt|SECURITY\.md|SUPPORT\.md|\.gitignore|\.gitleaks\.toml|docs\/[A-Z0-9_-]+\.md|mcp\/README\.md|licenses\/(?:Apache-2\.0-Rapier|MIT-meshoptimizer)\.txt|\.github\/dependabot\.yml|\.github\/ISSUE_TEMPLATE\/[a-z_]+\.yml|\.github\/workflows\/checks\.yml|\.github\/scripts\/(?:check-tree|gitleaks)\.mjs)$/;
 for (const path of paths) assert.match(path, allowed, `Private source or unreviewed file: ${path}`);
@@ -8,4 +9,13 @@ assert.ok(paths.includes('LICENSE') && paths.includes('README.md'));
 assert.ok(!/NOT APPROVED|Publication draft|Draft 1|must be confirmed/.test(readFileSync('LICENSE', 'utf8') + readFileSync('README.md', 'utf8')), 'Finalize licensing before publication');
 assert.ok(readFileSync('LICENSE', 'utf8').includes('Licensor and rights holder: Murad Mammadov, Azerbaijan.'), 'Final owner identity is required');
 assert.ok(readFileSync('LICENSE', 'utf8').includes('Official distribution: https://github.com/MooradXO/NIB-Editor'), 'Unexpected distribution destination');
+for (const file of paths.filter(file => file.endsWith('.md'))) {
+  const markdown = readFileSync(file, 'utf8');
+  for (const match of markdown.matchAll(/\]\(([^)]+)\)/g)) {
+    const target = match[1].split('#')[0];
+    if (!target || /^[a-z]+:/i.test(target) || target.startsWith('/')) continue;
+    const resolved = path.posix.normalize(path.posix.join(path.posix.dirname(file), target));
+    assert.ok(paths.includes(resolved), `Missing documentation target: ${file} -> ${target}`);
+  }
+}
 console.log('Public distribution repository contains only approved documentation and check tooling.');

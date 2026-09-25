@@ -1,5 +1,13 @@
 # Release candidate notes
 
+## 1.0.0-rc.2 — 2026-09-25
+
+- Added readable missing/old Node startup errors, correct launcher exit status, and installation/PATH troubleshooting. Node.js 24 LTS is recommended; minimum 22.12 remains unchanged.
+- Expanded documentation around complete game creation: playable genres, gameplay, worlds, graphics, physics, audio, animation, authoring and exports, with a full capability/limits guide.
+- Fixed Surface Paint custom normal-map references being lost during save/reload or omitted from exports.
+- Prevented MCP writes from using case, trailing-dot/space or stream aliases to bypass protection of the managed project manifest and active scene.
+- License terms are unchanged. This is a new release candidate; the original RC1 archive is preserved.
+
 ## 1.0.0-rc.1
 
 Initial public editor release candidate. A release candidate is a preview, not a stable-release guarantee.
