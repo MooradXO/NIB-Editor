@@ -1,14 +1,6 @@
 NIB THIRD-PARTY NOTICES
 =======================
 
-Distribution scope: this document retains the broader upstream inventory for
-attribution and audit context. The public documentation repository does not
-contain engine sources or build dependencies. The editor archive includes the
-runtime dependencies and release-preset assets identified below, but excludes
-the Blade Showcase models and development-only HDRI fixture. Paths below refer
-to the editor archive or upstream inventory, not to files in this documentation
-repository. Complete runtime license texts accompany this document in licenses/.
-
 This inventory describes direct dependencies and starter dependencies declared by this
 repository. Exact resolved versions are recorded in package-lock.json. Transitive dependency
 notices remain available in each installed npm package and in generated dependency inventories.
@@ -91,11 +83,11 @@ Distributed bytes: 1,615,248
 Distributed SHA-256: e7cfda5f4e98e623db12b8bfd0184e048488e4855d9c83e2751fb44a32e80c45
 
 Blade Showcase katana models
-Generation operator and source custodian: MooradXO
+Creator, rights holder and source custodian: Murad Mammadov (MooradXO)
 Generation service: Meshy AI, https://www.meshy.ai/
-Meshy plan used for generation: not recorded in this repository.
-Rights note: Meshy's current guidance distinguishes paid-plan ownership from free-plan CC BY 4.0
-licensing; this repository does not assert which ownership case applies.
+Meshy plan used for generation: the creator's paid account, confirmed by the rights holder
+on 27 September 2026 for these three models. The creator retains ownership; the repository's
+asset distribution license below is a separate grant and is not a free-plan classification.
 Ownership and licensing guidance: https://help.meshy.ai/en/articles/10137554-what-is-the-ownership-of-the-generated-models
 Tool terms: https://www.meshy.ai/terms-of-use
 Asset distribution terms used by this repository: Creative Commons Attribution 4.0 International
@@ -160,8 +152,9 @@ Modifications and glTF preparation: Don McCurdy
 Source and license statement: https://github.com/mrdoob/three.js/tree/dev/examples/models/gltf/RobotExpressive
 License: Creative Commons CC0 1.0 Universal
 Retrieved: 2026-08-21
-Modifications by NIB: none; the current upstream GLB is redistributed unchanged.
-examples/presets/assets/threejs/RobotExpressive.glb | 463,988 bytes | SHA-256 047f5e5fb3bb6d378bd1df16ca6137f2a596c99b3a1b5690b4020c05aaf6f319
+Modifications by NIB (2026-09-27): normalized the four skin weights per vertex in the hand meshes. Geometry, hierarchy, textures and animation clips are unchanged.
+Original upstream SHA-256: 047f5e5fb3bb6d378bd1df16ca6137f2a596c99b3a1b5690b4020c05aaf6f319
+examples/presets/assets/threejs/RobotExpressive.glb | 463,988 bytes | SHA-256 b0c623f0a23be690ae5632557af4b1dd0741fe105feff9eca8f295cffa54e934
 
 Poly Haven release-preset PBR textures
 Source: https://polyhaven.com/textures
@@ -200,7 +193,7 @@ examples/presets/assets/polyhaven/models/rock_07.glb | 2,129,572 bytes | SHA-256
 examples/presets/assets/polyhaven/models/boulder_01.glb | 5,626,716 bytes | SHA-256 9015eb84edd572445451d30fb27c34eae3fc15fb573176e08e889bbcb3cacd47
 examples/presets/assets/polyhaven/models/shrub_01.glb | 5,752,748 bytes | SHA-256 4d30333754ae92011ac20f54c52e3461ca70b44d4546fab8febb44fa106c788a
 
-All 29 release-preset asset files are served locally by the Editor and copied into Web Project
+All 33 release-preset asset files are served locally by the Editor and copied into Web Project
 exports. The preset runtime does not depend on GitHub, Poly Haven, or another asset CDN.
 
 examples/demo2d contains source-only example content maintained with NIB. Any other optional model,
@@ -210,3 +203,62 @@ canonical source, exact license, modification record, byte count, and SHA-256 ch
 Complete license texts for dependencies embedded in NIB runtime artifacts are stored in the
 repository and injected into export-runtime legal banners. This inventory does not replace any
 additional license terms shipped by other dependencies.
+
+Relay Foundry artwork (retrieved 2026-09-26)
+
+Kenney Blaster Kit 2.1, by Kenney
+Source: https://kenney.nl/assets/blaster-kit
+License: Creative Commons CC0 1.0 Universal
+License URL: https://creativecommons.org/publicdomain/zero/1.0/
+Source license: Kenney Blaster Kit 2.1 License.txt (31 July 2025).
+Modification: blaster-e was repacked with its original embedded color atlas,
+separate magazine and scope. No geometry reduction. The preset hides the opaque
+scope in play and adds an original open reflex frame with a visible aim reticle.
+
+Quaternius Modular Sci-Fi MegaKit Standard and Animated Mech Pack
+Author: Quaternius (Tomas Laulhe)
+Sources: https://quaternius.com/packs/modularscifimegakit.html
+https://quaternius.com/packs/animatedmech.html
+Author uploads: https://opengameart.org/content/modular-sci-fi-megakit
+https://opengameart.org/content/animated-mech-pack
+License: Creative Commons CC0 1.0 Universal
+License URL: https://creativecommons.org/publicdomain/zero/1.0/
+Source licenses: License_Standard.txt (MegaKit Standard), License.txt (Animated Mech Pack).
+Modifications: modular pieces arranged and batched into an original three-sector
+mission; gates remain separate meshes. Color and normal maps share a single GLB
+in their original resolution, JPEG quality 95. Unsupported packed metallic/roughness
+channels use explicit scalar metallic/roughness factors instead. Optional IOR/specular
+extensions are omitted in favor of their core material fallback. George and Leela
+retain authored rigs and selected baked Idle, Walk, Run, Shoot, Death and HitRecieve_1
+clips. Original color textures were connected to PBR materials. No external files.
+
+examples/presets/assets/foundry/carbine.glb | 62472 bytes | SHA-256 1c32ce51a177a5ecb215de16a2a3786689ad9d5d81230932e07b39aebf796e49
+examples/presets/assets/foundry/environment.glb | 3881144 bytes | SHA-256 131afbe2a517e687acfcf65e1bab32c4de38c93c287e63ba8e1df6fb00a1a539
+examples/presets/assets/foundry/george.glb | 2869264 bytes | SHA-256 ea13c1932498b5ca8161cee38b614e6a4faafa44e502ad338cad2e12b68c2b6b
+examples/presets/assets/foundry/leela.glb | 2219424 bytes | SHA-256 25a61715518e00476dcf836fdfc6622753f02794c72a81aa57a6c7fb95ae6fbf
+
+Emberwatch sprite artwork (derived from KayKit CC0 assets)
+Creator: Kay Lousberg (KayKit). Courtyard composition, lighting, rendering,
+procedural stonework, moss, rune/flame effects and PCM audio authored for NIB.
+Sources: Dungeon Remastered, Character Pack Adventures, Character Pack Skeletons:
+- https://github.com/KayKit-Game-Assets/KayKit-Dungeon-Remastered-1.0
+- https://github.com/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0
+- https://github.com/KayKit-Game-Assets/KayKit-Character-Pack-Skeletons-1.0
+License: CC0 1.0 Universal. https://creativecommons.org/publicdomain/zero/1.0/
+Source GLB bytes and hashes are retained in the KayKit inventory above.
+Modifications: selected accessories and authored actions rendered in Blender Cycles,
+8 facing directions, idle/run/cast or attack poses. Lossless PNG atlas packing.
+The original courtyard uses separate editable prop sprites and an orthographic
+background. Original effects and audio are generated by the preset source.
+Derived distributable PNG bytes and SHA-256:
+examples/presets/assets/emberwatch/courtyard.png | 2121388 bytes | SHA-256 c3038167e11cca2b6136aace4d183c86ebca3d3fcc85d67f4ec6ddb96d99909b
+examples/presets/assets/emberwatch/cover.png | 39313 bytes | SHA-256 fec09ad81edde467484617a40a53a81e6f1729da37de2cbcb4eb85accc21751d
+examples/presets/assets/emberwatch/lantern.png | 29519 bytes | SHA-256 e3f5cd8ff92fa10a5dbfdf3b0f237cb8e3e46953292a0e2b674fc2e7105ba352
+examples/presets/assets/emberwatch/mage-idle.png | 13397 bytes | SHA-256 f0ce8ff4ed11786321c67e21fdd6ab303c71fa197e2ccfc467b155e41f8d8ae6
+examples/presets/assets/emberwatch/mage.png | 747592 bytes | SHA-256 ca3ac8a66523adcce657b620905ddac4cee3c72a8f0a735676f4bb26d1b425c5
+examples/presets/assets/emberwatch/minion-idle.png | 9341 bytes | SHA-256 3e1c709235c9e68f7256cd37330fa5da8ce5d0b9f17b1348b1bdd4441e4e228e
+examples/presets/assets/emberwatch/minion.png | 317261 bytes | SHA-256 ecc8a8a1f15f4b81053c4ea614180148d0ae329a43f790fc2a8416eb2d2a591f
+examples/presets/assets/emberwatch/warden-idle.png | 11800 bytes | SHA-256 541e2fa2439302b724d6b0b8b7f80041ec187bed9de62dc9da1807eda5b9596f
+examples/presets/assets/emberwatch/warden.png | 537478 bytes | SHA-256 989424f2538cfbe2ecfa6f010d0be8e763bb169ee615904ca5acfa4a136ef697
+examples/presets/assets/emberwatch/warrior-idle.png | 11370 bytes | SHA-256 faf9537673b278e74546679f95752d5d3b9e0e91fe89eb2dca385fb60f725cf2
+examples/presets/assets/emberwatch/warrior.png | 445995 bytes | SHA-256 84c42530d876895d8e8b1d906e89172097490620ec8f58e2bf42221cb04f25c1
