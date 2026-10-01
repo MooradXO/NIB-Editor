@@ -10,9 +10,9 @@ commercial game development under the [NIB license](LICENSE), with no mandatory 
 
 ## Download and start
 
-**NIB 1.0.0-rc.2 — official release candidate, not a stable release**
+**NIB 1.0.0 — stable release**
 
-Download the named [NIB-1.0.0-rc.2.zip editor archive](https://github.com/MooradXO/NIB-Editor/releases/download/v1.0.0-rc.2/NIB-1.0.0-rc.2.zip)
+Download the named [NIB-1.0.0.zip editor archive](https://github.com/MooradXO/NIB-Editor/releases/download/v1.0.0/NIB-1.0.0.zip)
 from [Releases](https://github.com/MooradXO/NIB-Editor/releases). GitHub's automatic **Source code**
 downloads contain this documentation repository, not the editor. A SHA-256 checksum accompanies the archive.
 
@@ -49,6 +49,14 @@ These examples are supported starting points, not finished genre frameworks. Lar
 such as quests, inventories and progression are authored in scripts. See the
 [complete capabilities and limits](docs/13-CAPABILITIES.md).
 
+## Playable presets
+
+Ten complete small games provide art, sound, controls, objectives and restart or continuation:
+**Port Azure**, **Relay Foundry**, **Emberwatch**, **The Velvet Table**, **Tinker Yard**,
+**Emerald Reach**, **The Drowned Reliquary**, **Courier's Wake**, **The Last Shift** and
+**Signal Harbor**. Six rendering/animation showcases and the two empty starting templates are also
+included. Open **File > New Scene (Genres)** to choose one.
+
 ## Tools for the whole game
 
 | Area | What is included |
@@ -57,28 +65,33 @@ such as quests, inventories and progression are authored in scripts. See the
 | Gameplay | Entity/component model, JavaScript scripts, input APIs, player/vehicle/camera controllers, grid navigation, triggers and timelines. |
 | Graphics | Native WebGL2/WebGPU, sprites and text, PBR materials, lights/shadows, HDRI skies, terrain, foliage, surface painting, particles and post-processing. |
 | Physics | Built-in 2D and 3D simulation plus bundled Rapier for more capable 3D rigid bodies and joints. |
-| Characters | GLB import, imported/custom rigs, humanoid fitting, editable weights, animation clips, playback/blending and timed effect/audio events. |
+| Characters | GLB import, rigs, editable weights and clips, animation state graphs, explicit retargeting, manual two-bone IK and timed effect/audio events. |
 | Effects and audio | Reusable layered effects, procedural VFX, spatial sound, music, ambient zones, mixer buses, filters and reverb. |
-| Projects and delivery | Folder projects, asset import reports, save/reopen, active-scene Single HTML and Web Project ZIP exports with required runtime/resources. |
+| Projects and delivery | Folder projects, verified backups and recovery, asset import reports, save/reopen, multi-level HTML/ZIP exports and optional Windows game packaging. |
 | Optional AI workflow | A local MCP server with **62 MCP tools** for authoring, inspection, Play checks and export. |
 
 Read [effects](docs/09-EFFECTS.md), [characters](docs/10-CHARACTERS.md) and
 [MCP integration](docs/05-MCP-AI.md). Players can open a hosted export in a browser without installing NIB or Node.js.
 
-## Scope of this release candidate
+## Scope of this release
 
 The editor initially targets **desktop Chromium browsers**. WebGPU depends on browser, GPU and
 project compatibility; Auto reports its choice and fallback reason. WebGL2 remains available.
 Exported games need testing on their intended devices. See [release notes](CHANGELOG.md).
 
-Projects can contain multiple scenes; each export currently packages the **active scene**. There
-is no built-in multiplayer/cloud backend, automatic retargeter, animation state-graph editor or
-general IK authoring interface. Raw Unity prefabs/shaders do not execute directly. Refer to the
-capabilities guide for physics, asset, graphics and navigation limits.
+Exports include folder-project levels and scene-bundled levels such as Signal Harbor's five-level
+campaign. Play starts the current scene; an exported folder project starts its configured start
+scene. The optional Windows x64 packager wraps a Single HTML game in a dedicated desktop window;
+see [Windows packaging](docs/23-NATIVE-WINDOWS.md).
+
+There is no built-in multiplayer/cloud backend, automatic anatomical retargeting, full-body IK or
+mobile/store packaging. Raw Unity prefabs/shaders do not execute directly. Refer to the capabilities
+guide for physics, asset, graphics and navigation limits.
 
 This is the compiled Editor distribution. The private source, Git history, public npm SDK and
-framework starters are not included. Purchased Epic Toon FX content and Blade Showcase models are
-also excluded. You can import your own supported assets with the necessary rights.
+framework starters are not included. Purchased Epic Toon FX content is excluded. The three reviewed
+Blade Showcase models are included with their attribution and license notices. You can import your
+own supported assets with the necessary rights.
 
 Back up the installation's **projects/** folder before upgrading. Keep the editor server and MCP
 local: they are single-user development tools. Project scripts and authorized MCP clients can

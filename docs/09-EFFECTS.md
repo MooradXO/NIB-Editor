@@ -1,5 +1,45 @@
 # Compound effects
 
+## Surface effects and post-processing limits
+
+Material **Surface VFX** applies a procedural color overlay on the mesh's UVs in
+WebGL2 and WebGPU. The Inspector offers the 36 supported recipes. Glitch and Prism
+require billboard inputs and have no surface effect; existing values remain saved
+and appear as unsupported until you select a replacement. They remain available
+for `ProceduralVFX3D` billboards.
+
+Only **Mesh UV** is implemented. Saved `surfaceVfxUV: 'triplanar'` values retain the
+historical mesh-UV fallback; they do not apply world projection. The Inspector
+does not offer Triplanar for new authoring. Opening or saving an older project
+does not replace this value. An explicit change uses normal Undo/Redo.
+
+| Inspector control | Stored field | Actual behavior |
+| --- | --- | --- |
+| Color / intensity | `surfaceVfxColor` / `surfaceVfxIntensity` | Recipe tint / brightness multiplier |
+| Effect blend | `surfaceVfxOpacity` | Overlay weight, not mesh transparency or depth; zero restores the base material |
+| Mode | `surfaceVfxComposite` | Emissive adds light; Replace blends with recipe color. Zero intensity in Replace still blends toward black |
+| UV scale X / Y | `surfaceVfxTiling` | Multiplies mesh UV coordinates; recipes do not guarantee seamless repetition |
+| Time offset (s) | `surfaceVfxPhase` | Adds seconds to effect time, not an angle or animation speed |
+| World mask / axis / threshold / feather | `surfaceVfxMaskAxis`, `surfaceVfxMaskMin`, `surfaceVfxMaskFade` | Smooth band above `dot(worldPosition, axis) = threshold`; null axis disables the mask |
+
+**Screen-Space Reflections (Wet Floor)** requires enabled post-processing and a
+perspective camera. It reflects currently visible screen color on near-horizontal
+surfaces using depth-derived normals. Walls and orthographic cameras are unsupported;
+off-screen objects cannot appear in reflections. The pass does not read material
+roughness or a per-material reflection mask. Depth discontinuities and screen edges
+can produce artifacts. Reflection strength zero disables the contribution. This is
+a limited wet-floor effect, not general material reflections.
+
+**Motion blur is unavailable in both backends.** The compatibility object
+`postfx.motionBlur` is still serialized, loaded and exported without changing its
+values, but has no rendering pass. There is no authoring toggle. If an older scene
+has it enabled, the Inspector explains that the saved settings have no visual effect.
+
+These limits apply equally in Edit, Play, Single HTML and Web Project exports.
+Keeping a serialized field is a data compatibility promise, not effect support.
+
+## Compound effect authoring
+
 Open **+ Add → Effect editor** or **Assets → + Effect**. A new effect starts with
 visible particles; **Sparks**, **Fire** and **Smoke** are editable starting points.
 Drag a slider to change the preview, or type an exact value beside it. One drag
@@ -69,11 +109,12 @@ addressed dynamically by scripts.
 
 ## Prepared effect packages
 
-The package importer reads a version-one prepared catalog, resource inventory,
-and per-effect JSON files from the selected folder. It validates and stages the
-records before writing them into the project. Paths cannot escape that folder.
-Choose a namespace to distinguish the imported asset IDs from existing assets.
-Purchased collection bytes are not included with the engine.
+`editor/core/EffectPackageImport.js` reads a version-one prepared catalog, resource
+inventory, and per-effect JSON files. `prepareEffectPackage(source)` validates and
+stages records before a caller writes to a project. `source.readJSON(path)` and
+`source.readBlob(path)` provide selected files; `effectPackageFromFiles(FileList)`
+adapts a directory picker. Paths cannot escape the selected package. IDs receive
+a caller-selected namespace. Purchased collection bytes are never engine files.
 
 The converter produces native `modularParticles` layers, `.nibmesh` geometry
 resources, texture/audio dependencies, rotating groups, fading lights, and pitch

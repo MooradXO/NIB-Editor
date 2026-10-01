@@ -6,8 +6,8 @@ not for remote machine administration.
 
 ## Start the bridge
 
-1. Run `npm start` inside the extracted editor installation and open `/editor/?mcp=1`.
-2. Configure an MCP client to run `node` with the absolute path to that installation's `mcp/server.mjs`.
+1. Run `npm start` and open `/editor/?mcp=1`.
+2. Start `node mcp/server.mjs` from an MCP client.
 3. Keep the editor tab open while tools operate.
 
 The bridge validates the session, tool payloads, entity/component references, batch limits, and project
@@ -26,7 +26,7 @@ ownership. It does not write directly to browser storage behind the editor's bac
 - Export: `export_game` for supported editor export targets.
 - Batch operations: `batch` executes a bounded set of validated operations with transaction behavior.
 
-The schemas returned by the running server's `tools/list` are canonical. See [mcp/README.md](../mcp/README.md) for the full
+The exact schemas in `mcp/server.mjs` are canonical. See [mcp/README.md](../mcp/README.md) for the full
 catalog and client configuration.
 
 ## Recommended workflow
@@ -47,6 +47,17 @@ absolute local URLs in a scene.
 `batch` is useful for operations that share one intent. Validation occurs before or during the editor
 transaction, and failure must report which operation failed. Do not use a batch to hide unrelated
 changes or exceed the documented operation limit.
+
+MCP component edits, model/prefab instantiation and duplication report resource-loading failures
+instead of committing a placeholder. Scene rollback uses strict resource loading and validates the
+restored snapshot before publishing it; selection and the complete undo/redo checkpoint are restored.
+Normal project loading remains tolerant so a damaged asset does not hide the rest of a project.
+
+If the original resources are also unreadable, rollback reports that recovery failed. The partially
+edited scene is not saved: automatic/manual persistence and further MCP changes are blocked. Reload
+the editor to reopen the saved project, then repair or replace the damaged resource before retrying.
+This does not undo arbitrary external effects of a user script. Scene mutations are rejected in Play;
+script teardown errors are isolated so cleanup of other components can continue.
 
 ## Security model
 

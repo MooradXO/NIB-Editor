@@ -3,7 +3,7 @@
 The Model Context Protocol (MCP) server lets a compatible local client control the NIB editor.
 It can **build scenes, write scripts, create VFX, run play tests with error reports, and inspect
 screenshots** directly in the open browser editor. The current server exposes **62 tools**; the
-running server's `tools/list` response is the source of truth.
+`TOOLS` array in `mcp/server.mjs` is the source of truth.
 
 ---
 
@@ -19,17 +19,16 @@ After the AI connects, the editor status bar displays `🤖 MCP connected`.
 
 **2. Connect an MCP client**
 
-Configure the client to launch a local stdio MCP server with the extracted editor installation as
-its working directory. The documentation repository itself does not contain the server:
+Configure the client to launch a local stdio MCP server with the repository root as its working
+directory:
 
 ```text
 command:   node
 arguments: mcp/server.mjs
 ```
 
-If the client has no working-directory setting, pass the absolute path to the installation's
-`mcp/server.mjs` instead. The exact configuration screen or file depends on the MCP client.
-Do not expose the companion HTTP bridge outside the local machine.
+The exact configuration screen or file depends on the MCP client. Do not expose the companion
+HTTP bridge outside the local machine.
 
 **3. Ask the client**
 
@@ -210,7 +209,7 @@ MCP client
 mcp/server.mjs  — command queue, timeouts, response packing
    ⇅  authenticated HTTP transport v4, 127.0.0.1:8671
       (POST /session → bearer GET /pull?v=4 → bearer POST /result)
-Editor bridge — browser-side executor in the compiled editor
+McpBridge (editor/core/McpBridge.js) — browser-side executor
    ⇅
 EditorApp API — scene, component registry, scripts, assets, rendering
 ```

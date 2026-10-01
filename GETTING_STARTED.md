@@ -52,7 +52,7 @@ players opening a hosted exported game.
 rigs, weights and animation. The [MCP guide](docs/05-MCP-AI.md) is optional: you can use the editor
 without an AI account or MCP client.
 
-## Export the active scene
+## Export your game
 
 Stop Play and choose **File → Export Game (Single HTML)**. Test the downloaded HTML independently.
 The runtime and required resources are embedded. Browser audio may need a click before it starts.
@@ -68,7 +68,13 @@ npm run build
 
 Use `npm.cmd` in PowerShell if required. Deploy the resulting `dist/` folder to a static web host,
 and test it there. Preserve generated legal notices and check rights to your imported assets.
-The exporter packages the active scene, not every scene in the project.
+Exports include all folder-project levels and any scene-bundled supporting levels. Folder-project
+exports start at the configured start scene; Play starts the scene currently open in the editor.
+Signal Harbor includes its menu, three relays and ending even in a browser-storage project.
+
+For an optional Windows x64 desktop game, package the Single HTML export with the included
+command-line tool. See [Windows game packaging](docs/23-NATIVE-WINDOWS.md) for the pinned runtime,
+offline build option, local saves and distribution limits.
 
 ## Troubleshooting and upgrades
 
