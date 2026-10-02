@@ -17,22 +17,25 @@ Each recovery adds three seconds. Retry starts a new trial without changing the 
   outside this preset's desktop acceptance.
 
 The road is a closed Catmull-Rom circuit sampled into 224 segments, with a 12m surface,
-shoulders and rails. `route.js` owns the pure fixed-substep arcade model, nearest-segment
+shoulders and rails. The arcade controller uses fixed substeps, nearest-segment
 barrier response and forward checkpoint crossing. It is a deliberately road-constrained
 time trial, rather than a general vehicle physics simulator. The controller preserves
 braking, reversing and recoverable slip without a second physics solver fighting it.
 
-`assets.js` is original procedural artwork: a lofted GT body, glass canopy, aerodynamic
+The original procedural artwork includes a lofted GT body, glass canopy, aerodynamic
 trim, separate rolling wheels, limestone island, village, lighthouse, marina, palms and
 road furniture. All geometry and six painted texture maps are authored by this preset.
 There are no external artwork files, downloads, brands or additional asset licenses.
 The deterministic seed is 7401. The project stores locally generated GLB files; embedded
 PNGs and materials travel with each model through Save, Single HTML, ZIP and native export.
-Geometry groups are editable model instances. Regenerate topology by editing the builder;
-change placement/scale in the scene and gameplay in the editable RaceManager script.
+Geometry groups are editable model instances. Change placement/scale and materials in
+the Editor and gameplay in the editable RaceManager script. To change a mesh's shape,
+prepare a replacement GLB in a modeling tool and import it. Replacing the visible road
+does not change the controller's route; keep road geometry and driving rules aligned.
+The original procedural builders belong to private engine source and are not Editor tools.
 
-`runtime.js` embeds the complete rules closure in RaceManager, including after editor
-minification. The script uses engine-owned UI, particles, bounded synthesized audio cues,
+The project saves the complete rules in RaceManager. The script uses engine-owned UI,
+particles, bounded synthesized audio cues,
 and the existing pause/lifecycle. It creates no timers, listeners, external requests or
 independently owned GPU textures. Stop/retry do not accumulate world models or UI roots.
 
@@ -71,5 +74,7 @@ The saved project contains all assets. No asset CDN is needed in Play or exports
 The editable ShooterManager contains combat and mission rules. Individual colliders,
 lights, player and model instances remain editable; the architecture GLB batches
 static sectors and shares textures, while named gate meshes move independently.
-To rebuild layout/topology, edit the preset builder and the source artwork. This is
-a complete small mission with a defined ending; it is not a multiplayer game.
+For a different room layout, place your own imported GLB models, update the colliders,
+and keep mission triggers and consoles reachable. Editing the original procedural
+builder requires private source access and is not part of the downloaded Editor.
+This is a complete small mission with a defined ending; it is not a multiplayer game.
