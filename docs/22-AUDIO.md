@@ -1,5 +1,7 @@
 # Audio playback and mixer
 
+[Documentation](README.md) · [Preset gallery](PRESETS.md)
+
 Import licensed sound files in Assets, then open **Project > Audio mixer** in edit mode.
 Each level can choose **Decoded** or **Stream** per audio asset. Existing projects use
 Decoded until changed. The choice applies to AudioSource, MusicPlayer and AmbientZone

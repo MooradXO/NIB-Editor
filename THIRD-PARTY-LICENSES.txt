@@ -1,9 +1,10 @@
 NIB THIRD-PARTY NOTICES
 =======================
 
-This inventory describes direct dependencies and starter dependencies declared by this
-repository. Exact resolved versions are recorded in package-lock.json. Transitive dependency
-notices remain available in each installed npm package and in generated dependency inventories.
+This inventory covers NIB runtime libraries, bundled artwork and source-development dependencies.
+Development tools and optional framework adapters are not all shipped in the compiled Editor.
+Exact source-build versions are recorded in the private source package-lock.json; an exported
+Web Project supplies its own dependency lock. Preserve the notices relevant to distributed content.
 
 RUNTIME AND OPTIONAL PEER DEPENDENCIES
 --------------------------------------

@@ -1,5 +1,7 @@
 # glTF models
 
+[Documentation](README.md) · [Preset gallery](PRESETS.md)
+
 Import a self-contained GLB, or glTF with embedded data URIs, through the Assets panel.
 The Import report shows the JSON path, reason and suggested repair for unsupported or
 malformed data. Failed preflight does not publish an asset. Required unknown extensions,

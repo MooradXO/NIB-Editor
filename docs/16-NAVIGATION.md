@@ -1,5 +1,7 @@
 # Navigation
 
+[Documentation](README.md) · [Preset gallery](PRESETS.md)
+
 Use the compass in the toolbar to open **Navigation**. Choose **World Plane**: XY for
 2D sprites, XZ for ground movement in 3D. Set Cell Size and Bake Clearance, then
 **Bake and Show**. Settings survive Save, reopen, Undo/Redo, Play and both exports.

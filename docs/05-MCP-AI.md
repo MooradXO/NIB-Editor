@@ -1,5 +1,7 @@
 # NIB MCP and tool-driven workflows
 
+[Documentation](README.md) · [Preset gallery](PRESETS.md)
+
 NIB includes a local MCP server with 62 MCP tools. The server runs over stdio and connects to an open
 editor through a loopback-only bridge. It is designed for bounded project authoring and inspection,
 not for remote machine administration.
@@ -26,7 +28,7 @@ ownership. It does not write directly to browser storage behind the editor's bac
 - Export: `export_game` for supported editor export targets.
 - Batch operations: `batch` executes a bounded set of validated operations with transaction behavior.
 
-The exact schemas in `mcp/server.mjs` are canonical. See [mcp/README.md](../mcp/README.md) for the full
+The running server's `tools/list` response supplies the exact schemas. See [mcp/README.md](../mcp/README.md) for the full
 catalog and client configuration.
 
 ## Recommended workflow

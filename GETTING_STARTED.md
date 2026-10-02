@@ -37,6 +37,9 @@ players opening a hosted exported game.
 
 ## Make, save and test a game
 
+Follow [Meet the editor](docs/06-GETTING-STARTED.md) for a panel tour, then
+[build your first complete game](docs/FIRST-GAME.md). Browse [all presets](docs/PRESETS.md) for examples.
+
 1. Choose **Project → Create Project…** and enter a game name. Folder projects are saved under this
    installation's `projects/` directory.
 2. Choose **+ Add → Box**. Select **Cube** in Hierarchy and change its position in Inspector.

@@ -1,5 +1,7 @@
 # Licensing and ownership
 
+[Documentation](README.md) · [Preset gallery](PRESETS.md)
+
 NIB is proprietary software owned by Murad Mammadov, Azerbaijan, CEO of ProjectAI.
 Murad Mammadov is the Licensor personally; the company affiliation does not transfer
 ownership. The source repository remains private. Official editor downloads and

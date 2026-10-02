@@ -1,5 +1,7 @@
 # Package a Windows game
 
+[Documentation](README.md) · [Preset gallery](PRESETS.md)
+
 The optional native packager turns a **Single HTML** game export into an unsigned Windows x64
 portable application. Signal Harbor is the reference workflow: its menu, three relays, ending,
 input settings and local checkpoints run inside a dedicated Electron window. The player needs
@@ -9,7 +11,8 @@ neither Node.js nor an editor server. Keep the complete application folder toget
 
 1. Create **Signal Harbor — Campaign** from **File > New Scene (Genres)**. Edit the scenes or
    scripts, save, reopen, and test Play. Follow the [campaign tutorial](19-CAMPAIGN.md).
-2. Choose **File > Export Game (Single HTML)** and save the file as `harbor.html`.
+2. Choose **File > Export Game (Single HTML)** and save the file as `harbor.html` inside the NIB installation folder used in the next step.
+   Alternatively, pass the actual quoted full path to `--input`.
 3. Open a terminal in your NIB editor installation (or authorized source checkout). Node.js
    22.12 or newer is needed on the **build machine only**. Choose a new output folder and a
    permanent lowercase application ID. Run:

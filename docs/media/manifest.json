@@ -1,0 +1,152 @@
+{
+  "version": 1,
+  "images": [
+    {
+      "file": "arcade.webp",
+      "origin": "NIB 1.0.0 release acceptance; Windows / Edge 154.0.4258.48 / WebGL2; 1 October 2026",
+      "sha256": "5184d9df0e2e59ccdeb262ed32504110a7b576b504ab2de3b485bf3836f3b8ba",
+      "bytes": 94110,
+      "modifications": "PNG to WebP encoding only; no scene retouching."
+    },
+    {
+      "file": "cards.webp",
+      "origin": "NIB 1.0.0 release acceptance; Windows / Edge 154.0.4258.48 / WebGL2; 1 October 2026",
+      "sha256": "728362afbeef9d20a8eacbe4067070af8990c8dad17ed254f2c53c0f56139e13",
+      "bytes": 99652,
+      "modifications": "PNG to WebP encoding only; no scene retouching."
+    },
+    {
+      "file": "character-editor.webp",
+      "origin": "NIB 1.0.0 release acceptance; Windows / Edge 154.0.4258.48 / WebGL2; 1 October 2026",
+      "modifications": "PNG to WebP encoding only; no scene retouching.",
+      "sha256": "d1c9155f3c8c4285692b8e18667b4fac5141e2dc7508bcdc36bc1c5a81fba9d3",
+      "bytes": 63228
+    },
+    {
+      "file": "demoFootprints.webp",
+      "origin": "NIB 1.0.0 release acceptance; Windows / Edge 154.0.4258.48 / WebGL2; 1 October 2026",
+      "sha256": "e98a79b0b6cfff4049b886820f778aed2896853a3de59d1bba974c4bf5ae218c",
+      "bytes": 73218,
+      "modifications": "PNG to WebP encoding only; no scene retouching."
+    },
+    {
+      "file": "dungeon.webp",
+      "origin": "NIB 1.0.0 release acceptance; Windows / Edge 154.0.4258.48 / WebGL2; 1 October 2026",
+      "sha256": "9d2493816a905896a909eea80956b5a35caef9f714468d01b2dfd06a447ef111",
+      "bytes": 104878,
+      "modifications": "PNG to WebP encoding only; no scene retouching."
+    },
+    {
+      "file": "effect-editor.webp",
+      "origin": "NIB 1.0.0 release acceptance; Windows / Edge 154.0.4258.48 / WebGL2; 1 October 2026",
+      "modifications": "PNG to WebP encoding only; no scene retouching.",
+      "sha256": "dcb1845c2504ef3b5755a9ebd97399f3766b881e38393f252e681ded44adfe1f",
+      "bytes": 60474
+    },
+    {
+      "file": "first-game.webp",
+      "origin": "NIB 1.0.0 beginner tutorial acceptance; Windows / Edge / WebGL2; 2 October 2026",
+      "modifications": "PNG to WebP encoding only; no scene retouching.",
+      "sha256": "c310538e5fb3af6c4f6f28a45ae875e087245a734a433fea87a66e7976fac9d0",
+      "bytes": 51408
+    },
+    {
+      "file": "fps.webp",
+      "origin": "NIB 1.0.0 release acceptance; Windows / Edge 154.0.4258.48 / WebGL2; 1 October 2026",
+      "sha256": "e5513f0f3eccd87b37cdd3d60a41b848188a6f3a66d3446e489238beb6cc86d0",
+      "bytes": 119166,
+      "modifications": "PNG to WebP encoding only; no scene retouching."
+    },
+    {
+      "file": "horror.webp",
+      "origin": "NIB 1.0.0 release acceptance; Windows / Edge 154.0.4258.48 / WebGL2; 1 October 2026",
+      "sha256": "c745ff5ee38e21015def556f5bf649c3e991c40ddadd1b6f5196754d6595a371",
+      "bytes": 138650,
+      "modifications": "PNG to WebP encoding only; no scene retouching."
+    },
+    {
+      "file": "jungle.webp",
+      "origin": "NIB 1.0.0 release acceptance; Windows / Edge 154.0.4258.48 / WebGL2; 1 October 2026",
+      "sha256": "958c7a6620768ae1d3770ed5e7c84ceb6cfdad845b15d29e682e6c39ceda21d2",
+      "bytes": 164122,
+      "modifications": "PNG to WebP encoding only; no scene retouching."
+    },
+    {
+      "file": "katanaShowcase.webp",
+      "origin": "NIB 1.0.0 release acceptance; Windows / Edge 154.0.4258.48 / WebGL2; 1 October 2026",
+      "sha256": "db665fac02529d5906ae439e1ddcf22dd0ffbff222cf3bf36c8b8d78dd0f053b",
+      "bytes": 56678,
+      "modifications": "PNG to WebP encoding only; no scene retouching."
+    },
+    {
+      "file": "neonFrontier.webp",
+      "origin": "NIB 1.0.0 release acceptance; Windows / Edge 154.0.4258.48 / WebGL2; 1 October 2026",
+      "sha256": "c77fa1436dd9fee71af0dfe2fe79a17134384c4e96cf0d02feb8b0527ed1beab",
+      "bytes": 120390,
+      "modifications": "PNG to WebP encoding only; no scene retouching."
+    },
+    {
+      "file": "nib-wordmark.svg",
+      "origin": "Original typographic NIB wordmark prepared for the documentation update, 2 October 2026.",
+      "modifications": "Original vector artwork.",
+      "sha256": "3d68e29ac46eeb061c687b8e94f1e7f4edc6ea21c7bf054e96e50b8346db2c04",
+      "bytes": 648
+    },
+    {
+      "file": "pbrGround.webp",
+      "origin": "NIB 1.0.0 release acceptance; Windows / Edge 154.0.4258.48 / WebGL2; 1 October 2026",
+      "sha256": "d70f50e0b8c47c9a01661087e987010ca1aa2fb308e290463cc53c05d0005a58",
+      "bytes": 115508,
+      "modifications": "PNG to WebP encoding only; no scene retouching."
+    },
+    {
+      "file": "racing.webp",
+      "origin": "NIB 1.0.0 release acceptance; Windows / Edge 154.0.4258.48 / WebGL2; 1 October 2026",
+      "sha256": "7383ac17f2b4e57901251e91d7424e13cf4230dc8c464e5b6e7acfb6b1a84c72",
+      "bytes": 148310,
+      "modifications": "PNG to WebP encoding only; no scene retouching."
+    },
+    {
+      "file": "realFoliage.webp",
+      "origin": "NIB 1.0.0 release acceptance; Windows / Edge 154.0.4258.48 / WebGL2; 1 October 2026",
+      "sha256": "b77d96a91f0bad1321b8d49aff6f2b54b124c66cfbc7feb3488d066b2bcff953",
+      "bytes": 77264,
+      "modifications": "PNG to WebP encoding only; no scene retouching."
+    },
+    {
+      "file": "retroPs1.webp",
+      "origin": "NIB 1.0.0 release acceptance; Windows / Edge 154.0.4258.48 / WebGL2; 1 October 2026",
+      "sha256": "11287e13f4744378c8159d9ddc4abcc6b3cfe9483f347f0f9ee3e07625042dfe",
+      "bytes": 110922,
+      "modifications": "PNG to WebP encoding only; no scene retouching."
+    },
+    {
+      "file": "rigShowcase.webp",
+      "origin": "NIB 1.0.0 release acceptance; Windows / Edge 154.0.4258.48 / WebGL2; 1 October 2026",
+      "sha256": "bd86e3ae344681c4bd4a52282d2a144238140be3d0b7ba4371d12fbc7edc5469",
+      "bytes": 64566,
+      "modifications": "PNG to WebP encoding only; no scene retouching."
+    },
+    {
+      "file": "sandbox.webp",
+      "origin": "NIB 1.0.0 release acceptance; Windows / Edge 154.0.4258.48 / WebGL2; 1 October 2026",
+      "sha256": "9e9a895c184bfa16ab9dcd77563c4c0cabd5da34c1988de02fa201eaee6ae2bb",
+      "bytes": 106590,
+      "modifications": "PNG to WebP encoding only; no scene retouching."
+    },
+    {
+      "file": "script-editor.webp",
+      "origin": "NIB 1.0.0 beginner tutorial acceptance; Windows / Edge / WebGL2; 2 October 2026",
+      "modifications": "PNG to WebP encoding only; no scene retouching.",
+      "sha256": "8e86240cad3daefccf03ba5fb58772fe43cb291193163acf4de523c9d68ad3dc",
+      "bytes": 71796
+    },
+    {
+      "file": "signalHarbor.webp",
+      "origin": "NIB 1.0.0 release acceptance; Windows / Edge 154.0.4258.48 / WebGL2; 1 October 2026",
+      "sha256": "ed34e267338fbc5c0f5086bf50b81e909af2ffaa01aec30d8210d1e6e6a0dfd9",
+      "bytes": 105354,
+      "modifications": "PNG to WebP encoding only; no scene retouching."
+    }
+  ]
+}

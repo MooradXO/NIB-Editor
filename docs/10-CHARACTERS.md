@@ -1,5 +1,9 @@
 # Character rigs and animation
 
+[Documentation](README.md) · [Preset gallery](PRESETS.md)
+
+![The character editor in NIB 1.0.0](media/character-editor.webp)
+
 Select a model root and open **Character editor** in the Inspector. The editor
 uses an independent native preview with orbit/zoom controls; editing a draft does
 not change the game character until it is saved and applied.

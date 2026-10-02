@@ -1,5 +1,7 @@
 # Game UI
 
+[Documentation](README.md) · [Preset gallery](PRESETS.md)
+
 Game UI works in Edit preview, Play, Single HTML and Web Project exports on both rendering
 backends. It uses its own DOM layer and shadow styles beside the game canvas. It has no
 dependency on editor panels, IDs or CSS. Existing screen-space Sprite and Text2D remain available.
@@ -65,7 +67,7 @@ An asynchronous action rejects repeated submissions until it settles, while keep
 For Event actions, add a script to the button or a parent entity:
 
 ```js
-class Menu extends NIB.Component {
+class Menu extends NIB.Script {
   onUIAction(value, button) {
     if (value === 'score') {
       const label = this.scene.find('Score').getComponent(NIB.UIElement);
