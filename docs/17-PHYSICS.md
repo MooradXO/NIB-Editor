@@ -1,5 +1,7 @@
 # Mesh colliders and character movement
 
+[Documentation](README.md) · [Preset gallery](PRESETS.md)
+
 Enable **3D Physics > Engine > Rapier** in scene settings. Play and both game exports use
 the same physics implementation. Projects using mesh colliders or a character controller
 report a startup error if Rapier cannot load; they cannot fall back to the simpler solver.

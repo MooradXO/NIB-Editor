@@ -1,5 +1,9 @@
 # Compound effects
 
+[Documentation](README.md) · [Preset gallery](PRESETS.md)
+
+![The effect editor in NIB 1.0.0](media/effect-editor.webp)
+
 ## Surface effects and post-processing limits
 
 Material **Surface VFX** applies a procedural color overlay on the mesh's UVs in

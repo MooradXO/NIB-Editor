@@ -1,5 +1,7 @@
 # Profiler
 
+[Documentation](README.md) · [Preset gallery](PRESETS.md)
+
 Open **Profiler** in the editor toolbar and select **Start capture**. The floating panel works in
 Edit and Play. Stop or close it to release its query resources. **Reset samples** clears the history;
 **Save JSON** downloads a detached snapshot with raw samples and identity. Changing the scene resets

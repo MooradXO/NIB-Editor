@@ -1,5 +1,7 @@
 # Content loading
 
+[Documentation](README.md) · [Preset gallery](PRESETS.md)
+
 Open **Project > Content loading** to inspect source sizes and textures, save a JSON report,
 and set limits for the current level. Save the project after changing settings. Settings also
 participate in Undo/Redo and travel with the scene through both game exports.

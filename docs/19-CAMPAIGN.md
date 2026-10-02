@@ -1,5 +1,7 @@
 # Signal Harbor: build, play, and learn
 
+[Documentation](README.md) · [Preset gallery](PRESETS.md)
+
 Signal Harbor is a complete small 2D campaign included in the editor's genre gallery. You are
 a courier restoring three relays so the harbor's lighthouse can guide its fleet home. Each
 relay has three gold power cells and a signal console. Later relays add walls and moving patrols.

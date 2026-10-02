@@ -1,5 +1,7 @@
 # What you can build with NIB
 
+[Documentation](README.md) · [Preset gallery](PRESETS.md)
+
 NIB is a game engine and visual editor for complete browser games: player control, rules, enemies,
 levels, sound, animation, game UI, win/loss conditions and a distributable game. The editor handles
 world building and reusable resources; JavaScript scripts supply your game's rules. Built-in

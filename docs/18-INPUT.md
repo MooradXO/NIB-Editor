@@ -1,5 +1,7 @@
 # Input controls
 
+[Documentation](README.md) · [Preset gallery](PRESETS.md)
+
 Open **Project > Input controls** in Edit mode. Start with the standard actions or add your
 own button/axis action. Use stable IDs in scripts and a readable label in the Controls menu.
 Add keyboard codes (`KeyW`, `Space`), mouse button indices, gamepad buttons or gamepad axes.

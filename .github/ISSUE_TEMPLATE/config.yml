@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Usage questions
+    url: https://github.com/MooradXO/NIB-Editor/discussions
+    about: Ask how to use NIB or share a workflow.
+  - name: Private security report
+    url: https://github.com/MooradXO/NIB-Editor/security/advisories/new
+    about: Report a vulnerability privately.

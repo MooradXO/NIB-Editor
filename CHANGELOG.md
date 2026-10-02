@@ -7,6 +7,13 @@ follow Semantic Versioning. The `0.y.z` line represents initial development.
 
 ## [Unreleased]
 
+### Documentation
+
+- Add an illustrated editor tour, first-game tutorial, scripting reference, full preset gallery,
+  compatibility matrix, publishing/upgrade guide and a complete MCP command catalog.
+- Separate source-development setup from editor onboarding and update stable-release support wording.
+- These guide changes do not replace the published NIB 1.0.0 archive or change runtime behavior.
+
 ## [1.0.0] - 2026-10-01
 
 ### Added

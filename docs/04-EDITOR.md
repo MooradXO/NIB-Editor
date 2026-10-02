@@ -1,5 +1,7 @@
 # NIB editor reference
 
+[Documentation](README.md) · [Preset gallery](PRESETS.md)
+
 The browser editor is available at `/editor/` when the development server is running. It edits durable
 project data and creates disposable runtime objects for the viewport and play mode.
 

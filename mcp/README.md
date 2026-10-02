@@ -3,7 +3,7 @@
 The Model Context Protocol (MCP) server lets a compatible local client control the NIB editor.
 It can **build scenes, write scripts, create VFX, run play tests with error reports, and inspect
 screenshots** directly in the open browser editor. The current server exposes **62 tools**; the
-`TOOLS` array in `mcp/server.mjs` is the source of truth.
+running server's `tools/list` response is the source of truth.
 
 ---
 
@@ -19,7 +19,7 @@ After the AI connects, the editor status bar displays `🤖 MCP connected`.
 
 **2. Connect an MCP client**
 
-Configure the client to launch a local stdio MCP server with the repository root as its working
+Configure the client to launch a local stdio MCP server with the extracted editor installation as its working
 directory:
 
 ```text
@@ -104,6 +104,21 @@ the recursive dependencies of its contents; instances expand automatically at ru
 
 See [Character rigs](../docs/10-CHARACTERS.md) for the UI, resource format and limits.
 
+### Animation and project files
+
+| Tool | Purpose | Arguments |
+| --- | --- | --- |
+| `animation_get` | Read a saved .nibanim character clip, including stable bone tracks and sound/effect events. | `asset` |
+| `animation_validate` | Validate a clip, its saved rig, bone IDs and all event resource dependencies without writing. | `definition` |
+| `animation_save` | Save a reusable character clip with durable Undo. definition: {version:1,name,rig,duration,loop,speed,tracks:[{bone,path,interpolation,keys:[{time,value}]}],events:[{id,time,kind,asset,bone,position,volume,pitch}]}. rig is a .nibrig asset ID; bone is a stable rig bone ID; paths are translation, rotation (quaternion), scale. Interpolation LINEAR or STEP. Events play audio/effect assets at clip times. Missing bones/resources are rejected. Assign separately with animation_assign. | `asset?`, `definition` |
+| `animation_set_key` | Insert or replace one saved clip key at time in seconds. Rotation values are normalized [x,y,z,w] quaternions; translation/scale use [x,y,z]. Uses the same validation and durable Undo as the visual editor. | `asset`, `bone`, `path`, `time`, `value`, `interpolation?` |
+| `animation_assign` | Add a saved compatible clip to a character and select it as the initial animation. Existing assigned clips remain available for script-controlled crossfades. Persists through Play, reopen and export. | `entity`, `asset`, `autoplay?` |
+| `animation_preview` | Preview an assigned character clip in Edit mode. Omit time to play with sound/effect cues; provide time to scrub silently; stop:true clears owned cues and restores rest pose. fade sets crossfade seconds. Does not alter saved clip data. | `entity`, `asset?`, `time?`, `fade?`, `stop?` |
+| `open_scene` | Folder-project mode only: switch to another project scene by name after saving the current scene to disk. Scene names come from project_info.scenes. | `name` |
+| `create_scene` | Folder-project mode only: save the current scene, create a new empty scene using the current view mode, and switch to it. Returns the created scene name. | `name` |
+| `project_file_read` | Folder-project mode only: read a project file by a path relative to the project folder, for example "Scripts/Mover.js" or "Scenes/main.nibscene.json". | `path` |
+| `project_file_write` | Folder-project mode only: write a project file by a path relative to the project folder. Writing Scripts/<Class>.js recompiles the script without F5 through hot reload within 2 seconds. Paths outside the project folder, including .. and absolute paths, are rejected. | `path`, `content` |
+
 ### Timeline
 
 Animate entity properties with keyframes for cutscenes. Add a `Timeline` component to
@@ -144,7 +159,7 @@ export. Use the editor's ⛰ brush for manual sculpting.
 | Tool | Purpose | Arguments |
 |---|---|---|
 | `update_scene_settings` | Patch `background`, `sky {zenith,horizon,ground}`, `fog {color,near,far}` (or `null`), `environment`, `postfx` (bloom, vignette, chromatic, grain, exposure, and color **grading** with temperature/tint −1..1, lift/gamma/gain RGB triples, a 256×16 PNG-strip LUT ID, and `lutAmount`), `quality {pixelRatio, shadows}`, `physics2d/3d`, and `camera2d`. Nested groups merge partially. Colors use `"#rrggbb"` | `settings` |
-| `new_scene` | Replace the current scene with `empty3d`, `empty2d`, `fps`, `racing`, `platformer`, `arcade`, `cards`, or `sandbox` (Undo remains available) | `preset` |
+| `new_scene` | Replace the current scene with `signalHarbor`, `fps`, `racing`, `arcade`, `cards`, `sandbox`, `jungle`, `dungeon`, `neonFrontier`, `horror`, `retroPs1`, `katanaShowcase`, `demoFootprints`, `rigShowcase`, `pbrGround`, `realFoliage`, `empty3d`, `empty2d` (Undo remains available; use the exact ID) | `preset` |
 | `write_script` | Create or update `class Name extends NIB.Script { static params={...}; start(){} update(dt){} fixedUpdate(dt){} }`. The script name must match its Latin-character class name. Returns the compilation result | `name`, `code` |
 | `attach_script` | Attach a script to an entity, optionally overriding `static params` | `entity`, `script`, `props?` |
 | `undo` | Revert the latest scene change | — |
