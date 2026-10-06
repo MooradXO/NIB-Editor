@@ -7,12 +7,53 @@ follow Semantic Versioning. The `0.y.z` line represents initial development.
 
 ## [Unreleased]
 
+## [1.0.1] - 2026-10-06
+
+### Fixed
+
+- Protect project writes after ownership changes; keep scenes safe when deleting the active scene fails.
+  Save authored Timeline poses, and preserve each surface in a brush stroke across multiple surfaces.
+- Preserve unrelated settings in partial MCP edits, retain Redo after a no-op save, and leave history
+  unchanged when replay fails. Legacy script APIs no longer require rewriting user strings or regular expressions.
+- Apply Surface Paint changes to the material, bound console rows, and ignore stale texture/surface loads.
+- Correct parented look-at and follow/chase cameras, reentrant once listeners, component destruction
+  during startup, coincident-circle separation and raycasts from inside colliders. Collision callbacks
+  may remove bodies without skipping unrelated live pairs.
+- Deliver animation events across loop boundaries, pause Verlet ragdolls at zero game time, transform
+  auto-rig normals correctly under nonuniform scale, honor disabled particle modules, and preserve edited
+  Jungle Strike target positions. Orthographic picking now produces orthographic rays.
+- Release owned skin textures and old instancing buffers, roll back failed WebGL allocations, restore
+  2D drawing after depth-only materials, and set WebGPU blend constants. Correct HDR flame color,
+  fixed-surface footprints and rare-color retention in retro palettes.
+- Parse three/four/six/eight-digit hex colors, preserve arbitrary script/text strings in standalone HTML,
+  reject oversized ZIP32 inputs, and validate HDR input before allocating decoded pixels. Exported scripts
+  can resolve HDR assets through the runtime asset facade.
+- Repair live MCP model fixtures, reject non-finite graphics verification results, and distinguish
+  blocking backend incompatibility from custom-script advisories in regression tests.
+- Update the development-only image tool dependency to sharp 0.35.5 to resolve its reported advisory.
+- Qualify meshoptimizer 1.3.0, root build tooling Vite 8.3.2 and the Svelte starter plugin 7.3.1.
+  Portable game exports and starters retain their separately qualified Vite 8.0.16 lock.
+
+### Compatibility and limits
+
+- Project and asset formats are unchanged. Back up projects and extract this release into a separate
+  folder before copying them, as described in [the upgrade guide](docs/PUBLISHING.md).
+- Corrected rendering, physics, animation and camera behavior can change the appearance or behavior
+  of projects that relied on a defect. HDR flames now use the intended linear-light path; retune authored
+  brightness if necessary. An animation update processes at most 32 loop intervals and 1,024 events.
+- HDR input is limited to 8,192 pixels per side and 16,777,216 pixels total, further restricted by the
+  GPU texture limit. Retained RGB32F panoramas count toward runtime texture budgets. Malformed,
+  oversized or over-budget input fails explicitly. Static content reports exclude decoded HDR memory.
+- ZIP32 supports at most 65,535 files and 65,535 UTF-8 bytes per filename; ZIP64 is not provided.
+- RGB-only hex colors preserve existing alpha; RGBA forms set it. Invalid hex strings become black
+  while preserving alpha. See [the engine reference](docs/03-ENGINE.md) for the color contract.
+- No new multiplayer, cloud or platform services are introduced. License and private-source policy remain unchanged.
+
 ### Documentation
 
-- Add an illustrated editor tour, first-game tutorial, scripting reference, full preset gallery,
-  compatibility matrix, publishing/upgrade guide and a complete MCP command catalog.
-- Separate source-development setup from editor onboarding and update stable-release support wording.
-- These guide changes do not replace the published NIB 1.0.0 archive or change runtime behavior.
+- Include the illustrated editor tour, first-game tutorial, scripting reference, full preset gallery,
+  compatibility matrix, publishing/upgrade guide and complete MCP command catalog.
+- Document HDR limits, memory accounting and the corrected color/graphics behavior.
 
 ## [1.0.0] - 2026-10-01
 

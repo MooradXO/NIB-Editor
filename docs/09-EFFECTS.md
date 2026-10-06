@@ -6,6 +6,12 @@
 
 ## Surface effects and post-processing limits
 
+Flame ramp colors are authored in sRGB. Both GPU backends interpolate and scale
+intensity in linear space, then encode once for direct LDR or at the final HDR
+composite. A neutral 128/255 gray at intensity 1 remains 128/255 with neutral
+post-processing. Existing flame presets therefore render brighter than versions
+that applied gamma twice; authored colors and intensity values remain unchanged.
+
 Material **Surface VFX** applies a procedural color overlay on the mesh's UVs in
 WebGL2 and WebGPU. The Inspector offers the 36 supported recipes. Glitch and Prism
 require billboard inputs and have no surface effect; existing values remain saved
@@ -128,6 +134,13 @@ and gradients, bursts, local/world simulation, velocity/force/rotation, flipbook
 atlases, mesh particles, sub-emitters and particle trails share seeded playback.
 The full prepared catalog used for qualification contains 1,326 effects. It is
 not distributed with the engine; tests use original synthetic fixtures.
+
+Module blocks with `enabled: false` or `enabled: 0` are inactive in simulation,
+sub-emitter routing and rendering. An omitted flag is active. The authored block
+is preserved for saving and later re-enabling; reload the effect after changing
+its definition. Disabling `InitialModule` uses default initial particle values
+while retaining its particle-capacity limit. Disabling `EmissionModule` stops
+automatic rate/burst emission; existing particles continue their lifetime.
 
 The prepared browser conversion has deliberate approximations. Noise is a bounded
 procedural approximation; velocity limiting uses magnitude damping; default

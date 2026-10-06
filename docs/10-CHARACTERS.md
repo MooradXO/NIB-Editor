@@ -242,3 +242,25 @@ unmapped animated branches or event attachments, instead of silently dropping th
 This is explicit mapping and two-bone IK: no automatic anatomical matching, terrain
 raycasts, pelvis correction, joint limits, full-body IK or physics ragdoll. Disable
 legacy LegIK or an active Ragdoll before using character IK on the same skeleton.
+
+## Low-level animation helpers
+
+`Animator` delivers forward markers over complete loop crossings, including a full
+cycle in one update. Reverse playback is pose-only. A marker at time zero fires on
+entering a new loop, not on the initial `play`. Catch-up is limited to the first 32
+cycle intervals and 1,024 callbacks per update; the final pose still uses the full
+elapsed time. A callback that stops, restarts or changes the clip cancels the old
+clip's remaining markers and pose write for that update.
+
+The standalone Verlet `Ragdoll` uses accumulated 1/60-second steps. Damping and
+constraint iterations apply per simulation step. Zero, negative and nonfinite
+elapsed time leave its particles and pose unchanged. `maxStepDt` limits accepted
+time per call after a stall (at most two seconds); smaller steps accumulate without
+advancing the pose until one simulation step is available. Activating captures a
+new pose and clears the remainder. This helper is separate from Rapier physics.
+
+Legacy `rigMeshToSkinned` bakes world positions, inverse-transpose normals, and
+normalized forward tangents into a copy of the geometry. Reflections flip tangent
+handedness and retain authored index winding. Singular/nonfinite world transforms
+are refused before replacing the source mesh. The returned skeleton root belongs
+under an identity scene root, as before.

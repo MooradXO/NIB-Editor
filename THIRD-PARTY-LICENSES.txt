@@ -17,7 +17,7 @@ License: Apache-2.0
 Copyright: Copyright 2020 Dimforge EURL
 Complete bundled license: licenses/Apache-2.0-Rapier.txt
 
-meshoptimizer 1.2.0
+meshoptimizer 1.3.0
 Purpose: Optional mesh simplification and automatic level-of-detail generation.
 Source: https://github.com/zeux/meshoptimizer
 License: MIT
@@ -47,7 +47,7 @@ Purpose: Development-only browser correctness smoke; not part of the runtime pac
 Source: https://github.com/microsoft/playwright
 License: Apache-2.0
 
-sharp 0.35.4
+sharp 0.35.5
 Source: https://github.com/lovell/sharp
 License: Apache-2.0
 
@@ -59,7 +59,7 @@ TypeScript 6.0.3
 Source: https://github.com/microsoft/TypeScript
 License: Apache-2.0
 
-Vite 8.3.0 (root build tools); Vite 8.0.16 (portable exports and starters)
+Vite 8.3.2 (root build tools); Vite 8.0.16 (portable exports and starters)
 Source: https://github.com/vitejs/vite
 License: MIT
 
