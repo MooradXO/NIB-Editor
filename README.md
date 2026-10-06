@@ -2,17 +2,17 @@
 
 <p align="center"><strong>A visual editor for 2D and 3D browser games.</strong><br>Create levels, write gameplay, animate characters, add sound and publish your game.</p>
 
-<p align="center"><a href="https://github.com/MooradXO/NIB-Editor/releases/latest"><strong>Download 1.0.0</strong></a> · <a href="GETTING_STARTED.md">Get started</a> · <a href="docs/README.md">Documentation</a> · <a href="docs/PRESETS.md">Preset gallery</a> · <a href="https://github.com/MooradXO/NIB-Editor/discussions">Questions</a></p>
+<p align="center"><a href="https://github.com/MooradXO/NIB-Editor/releases/latest"><strong>Download 1.0.1</strong></a> · <a href="GETTING_STARTED.md">Get started</a> · <a href="docs/README.md">Documentation</a> · <a href="docs/PRESETS.md">Preset gallery</a> · <a href="https://github.com/MooradXO/NIB-Editor/discussions">Questions</a></p>
 
 ![NIB Editor running Port Azure, one of the included games](docs/media/racing.webp)
 
-**NIB 1.0.0 is stable.** Free personal and commercial game development under the [NIB license](LICENSE),
+**NIB 1.0.1 is stable.** Free personal and commercial game development under the [NIB license](LICENSE),
 with no mandatory subscription or royalties. Created and owned by **Murad Mammadov**, CEO of **ProjectAI**, Azerbaijan.
 
 ## Download and launch
 
 1. Install [Node.js 24 LTS](https://nodejs.org/en/download), with **Add to PATH** enabled. Minimum: Node 22.12.
-2. Download **[NIB-1.0.0.zip](https://github.com/MooradXO/NIB-Editor/releases/download/v1.0.0/NIB-1.0.0.zip)** and extract the whole archive into a writable folder.
+2. Download **[NIB-1.0.1.zip](https://github.com/MooradXO/NIB-Editor/releases/download/v1.0.1/NIB-1.0.1.zip)** and extract the whole archive into a writable folder.
 3. On Windows double-click **start.bat**. On macOS/Linux run **sh start.sh**; see [platform qualification](docs/COMPATIBILITY.md).
 4. Keep the terminal open and visit **[localhost:8670/editor/](http://localhost:8670/editor/)** in a desktop Chromium browser.
 

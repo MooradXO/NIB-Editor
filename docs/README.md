@@ -1,6 +1,6 @@
 # NIB documentation
 
-**NIB 1.0.0 · stable** · [Download](https://github.com/MooradXO/NIB-Editor/releases/latest) · [Home](../README.md) · [Ask a question](https://github.com/MooradXO/NIB-Editor/discussions)
+**NIB 1.0.1 · stable** · [Download](https://github.com/MooradXO/NIB-Editor/releases/latest) · [Home](../README.md) · [Ask a question](https://github.com/MooradXO/NIB-Editor/discussions)
 
 Build your first game, explore the examples, then use the reference for a particular tool.
 These guides describe the downloadable Editor. No source checkout or public npm SDK is needed.

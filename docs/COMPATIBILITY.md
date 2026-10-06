@@ -1,13 +1,13 @@
 # Compatibility and known limitations
 
-[Documentation](README.md) · Applies to **NIB 1.0.0** · Reviewed **2 October 2026**
+[Documentation](README.md) · Applies to **NIB 1.0.1** · Reviewed **6 October 2026**
 
 ## Editor requirements
 
 - A writable installation folder, Node.js **22.12 or newer** (24 LTS recommended), and a desktop Chromium browser.
 - A working **WebGL2** implementation. WebGPU additionally depends on browser, GPU, driver and project compatibility.
 - No npm dependency installation for the downloaded editor. Web Project builds have their own pinned npm dependencies.
-- Enough disk space for the editor, your imported assets, full project backups and exports. The editor archive is about 76.5 MB;
+- Enough disk space for the editor, your imported assets, full project backups and exports. The editor archive is about 80 MB;
   projects and optional Windows game packages need additional space.
 
 No minimum CPU, RAM or GPU model has been established by a representative hardware benchmark.
@@ -25,11 +25,11 @@ Choose your own performance target and measure the actual game with the [Profile
 | Chrome and other Chromium browsers | Intended editor family; test the browser/version and GPU you plan to use |
 | Firefox / Safari | No general editor or export compatibility claim for this release; qualify a specific game separately |
 | Physical touch and gamepads | APIs and automated input emulation exist; physical device qualification remains game-specific |
-| Windows game package | Unsigned portable x64 Electron wrapper checked; no installers, signing, ARM or auto-update service |
+| Windows game package | Unsigned portable x64 Electron wrapper checked for 1.0.0; no installers, signing, ARM or auto-update service |
 
-All 18 presets were checked for startup on both rendering backends. That startup check is not a full
-playthrough of every game. Detailed release checks also exercised the Signal Harbor campaign and exports.
-Use [release notes](https://github.com/MooradXO/NIB-Editor/releases/tag/v1.0.0) for the published acceptance summary.
+The 1.0.0 release checked all 18 presets for startup on both rendering backends. That historical startup check is not a full
+playthrough of every game. Its detailed release checks also exercised the Signal Harbor campaign and exports.
+See the [changelog](../CHANGELOG.md) for 1.0.1 corrections and limits. The public [latest release](https://github.com/MooradXO/NIB-Editor/releases/latest) identifies the version actually published.
 
 ## Current boundaries
 

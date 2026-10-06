@@ -2,7 +2,7 @@
 
 [Documentation](README.md) · [Download NIB](https://github.com/MooradXO/NIB-Editor/releases/latest)
 
-NIB 1.0.0 includes **ten small games, six showcases and two empty templates**.
+NIB 1.0.1 includes **ten small games, six showcases and two empty templates**.
 Open **File → New Scene (Genres)…**, select the **menu name** below and confirm **Create**, then Play.
 Save existing work before replacing a scene. Screenshots show the real stable Editor in Play;
 these are included examples, not claims about every game you can make.
@@ -98,6 +98,13 @@ Emerald Reach: fly a detailed rescue helicopter through a tropical river valley.
 - **Controls:** WASD/arrows fly; mouse aim; left fire; Space/right rockets; E hoist; Shift brake.
 - **Learn:** Arcade flight, animated models, rescue objectives and sound.
 - **Customize:** Edit the helicopter, jammers, crews, materials and mission script.
+- Jammers, crews and enemies use their scene world positions when Play starts.
+  Reset restores that mission's enemy positions and rotations; patrols use the
+  authored positions as their centers. Named sibling wrecks and rescue beacons
+  align to their target's X/Z; child attachments retain local offsets. Hit tests,
+  rescue range, objectives and minimap use the same captured positions. Existing
+  projects keep their saved script; regenerate the preset or update that script
+  to adopt these rules. The base and flight bounds remain mission-script settings.
 - **Guide:** [Open the relevant walkthrough](04-EDITOR.md#emerald-reach-rescue-flight).
 
 ### The Drowned Reliquary

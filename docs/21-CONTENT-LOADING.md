@@ -17,7 +17,7 @@ use the decoded dimensions. Use **Level Resources** to declare assets loaded by 
 | --- | --- | --- |
 | On budget exceeded | Warn and continue | A visible message describes the exceeded limit. Block load rejects the candidate level. |
 | Source payload | 268435456 bytes (256 MiB) | Counts actual acquired response bodies once per URL within the level adapter, including model subresources and decoded audio; reserves full known source sizes for media streams. |
-| Texture estimate | 536870912 bytes (512 MiB) | RGBA8 texels including requested mip levels, per managed texture/sampling variant. Checked before upload. |
+| Texture estimate | 536870912 bytes (512 MiB) | RGBA8 texels including requested mip levels, plus retained RGB32F HDR panoramas. Checked before upload / HDR decoded allocation. |
 | Texture dimension | 8192 pixels | Maximum decoded width or height. |
 | Work items per browser turn | 32 | Resources and scene construction yield to browser tasks; allowed range 1–256. |
 
@@ -30,9 +30,17 @@ These limits apply to content acquired by one managed level adapter. They are **
 VRAM or whole-process memory limits**. The source metric counts unique content, not total network
 traffic. HTTP compression, browser caches, intermediate decode buffers, CPU mesh arrays, decoded
 audio, generated textures, render targets and driver allocations have different sizes. The editor
-retains source blobs for the whole project. HDR float data and generated environment maps are
-outside the RGBA8 estimate, although HDR source bytes and dimensions are checked. Script code that
+retains source blobs for the whole project. Managed Radiance HDR panoramas count 12 decoded bytes
+per pixel against the texture budget; generated environment maps are still excluded. Script code that
 uses its own fetch or renderer allocations bypasses this managed path.
+
+Radiance HDR decoding has an additional hard ceiling: width and height at most 8192, and at most
+16,777,216 pixels (192 MiB of RGB32F output plus one scanline of up to 32 KiB). These limits also
+apply to direct `NIB.parseHDR` calls and cannot be disabled by warn mode. Headers and every flat/RLE
+scanline are validated before decoded storage is allocated. Editor, library asset loading and game
+exports further restrict dimensions to the active GPU's maximum texture size. Use a smaller panorama
+if a limit is exceeded; file size alone does not predict decoded size. This is a per-image decode bound,
+not a total editor-memory or physical VRAM guarantee. Failed loads do not retain budget reservations.
 
 During a transition the current level and candidate coexist until the candidate is ready. Each
 level has its own budget; shared assets can temporarily exist twice. Runtime loading status exposes

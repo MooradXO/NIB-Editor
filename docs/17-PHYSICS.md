@@ -50,6 +50,20 @@ Do not animate complex collision geometry by rebuilding it every frame.
 it does not describe the support surface of an arbitrary hull. Use the character controller's
 capsule contact state for slope/step gameplay.
 
+## Built-in ray and contact boundaries
+
+Built-in 2D and 3D raycasts normalize nonzero directions and return the nearest hit.
+Starting inside or on a circle, sphere, capsule approximation or box returns distance
+zero and the ray origin, matching Rapier's solid-ray behavior. Zero or nonfinite
+directions, nonfinite origins, and nonpositive or NaN `maxDist` return no hit.
+The built-in `maxDist` bound remains exclusive: a hit exactly at that distance is omitted.
+Collider coordinates retain the built-in local-coordinate behavior described above.
+
+Collision callbacks may remove, destroy, detach or disable either body. The solver
+rechecks both owners after the first callback; if either is no longer active in the
+same scene, the second callback is skipped. Remaining live pairs still run. A raycast
+inside a callback does not replace the ongoing contact-step snapshot.
+
 ## Character controller
 
 Add **3D Character Controller** to an entity without an enabled RigidBody3D or NavAgent.

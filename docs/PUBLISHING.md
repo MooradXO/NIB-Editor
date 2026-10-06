@@ -55,14 +55,15 @@ your assets. Changing origin or game/campaign IDs can separate old saves from ne
 6. Check save/reopen and one independent export before removing the older installation or backup.
 
 Existing 1.0.0 release downloads keep their published bytes and checksums. Online documentation can receive
-clarifications without replacing the engine archive. A later engine release gets its own version and notes.
+clarifications without replacing the engine archive. Version 1.0.1 keeps project and asset formats compatible. It corrects rendering, physics and animation behavior;
+review the [changelog](../CHANGELOG.md), especially HDR limits and flame brightness, when comparing an old project.
 
 ## Verify a download
 
 Download the editor ZIP and its matching `.sha256` asset from the same release. On Windows:
 
 ```powershell
-Get-FileHash -Algorithm SHA256 -LiteralPath ./NIB-1.0.0.zip
+Get-FileHash -Algorithm SHA256 -LiteralPath ./NIB-1.0.1.zip
 ```
 
 Compare the complete hash with the checksum file. A matching hash confirms the downloaded bytes;
