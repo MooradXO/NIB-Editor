@@ -42,7 +42,7 @@ License: MIT
 DEVELOPMENT AND BUILD DEPENDENCIES
 ----------------------------------
 
-Playwright 1.63.0
+Playwright 1.64.0
 Purpose: Development-only browser correctness smoke; not part of the runtime package.
 Source: https://github.com/microsoft/playwright
 License: Apache-2.0
@@ -51,7 +51,7 @@ sharp 0.35.5
 Source: https://github.com/lovell/sharp
 License: Apache-2.0
 
-Svelte 5.57.1
+Svelte 5.57.2
 Source: https://github.com/sveltejs/svelte
 License: MIT
 
@@ -59,7 +59,7 @@ TypeScript 6.0.3
 Source: https://github.com/microsoft/TypeScript
 License: Apache-2.0
 
-Vite 8.3.2 (root build tools); Vite 8.0.16 (portable exports and starters)
+Vite 8.3.4 (root build tools); Vite 8.0.16 (portable exports and starters)
 Source: https://github.com/vitejs/vite
 License: MIT
 
