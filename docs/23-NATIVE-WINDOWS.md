@@ -25,7 +25,9 @@ neither Node.js nor an editor server. Keep the complete application folder toget
    The first command downloads the pinned Windows x64 Electron 44.4.5 archive from its official
    GitHub release and checks its SHA256 before extracting it. No npm installation is required.
    For an offline build, download that archive once, then replace `--download-runtime` with
-   `--runtime electron-v44.4.5-win32-x64.zip`. A different version or damaged archive is rejected.
+   `--runtime electron-v44.4.5-win32-x64.zip`. Quote full input/runtime/output paths when they
+   contain spaces. The output's parent directory must already exist; the output itself must
+   be new. A different version or damaged archive is rejected.
 4. Run `Harbor-Windows/Game.exe`. Click **New voyage**, then move with WASD/arrows. Use **Save
    voyage** before closing. Relaunch and choose **Continue**. F11 toggles fullscreen; the window
    can also be resized. Losing focus/minimizing pauses through the game's existing input system;
@@ -54,6 +56,10 @@ failure retains the campaign's existing **session only** behavior. A clean close
 game before exiting and flushes browser storage, but it does not invent an additional checkpoint.
 Forced termination, disk failure, incompatible save changes and manual tampering are not covered.
 `native.log` in the profile records startup and shutdown failures for troubleshooting.
+After archiving, extract into a new folder and run `--check` against that extracted copy.
+Test Save, close, relaunch and Continue/Load in the actual executable: success in the editor
+does not establish that the separate native profile has a usable save. A package update with
+the same ID retains that profile; it does not migrate a game's incompatible save schema.
 
 All content comes from the embedded Single HTML. External requests, external navigation, new
 windows, downloads, frames, webviews and privileged permission requests are blocked. Pointer
@@ -88,3 +94,13 @@ reviewed updates as Electron security fixes become available; there is no update
 
 Host design follows Electron's [security guidance](https://www.electronjs.org/docs/latest/tutorial/security)
 and [custom protocol documentation](https://www.electronjs.org/docs/latest/api/protocol).
+
+Private-source qualification uses `tools/visual-regression/native-game-workshop.mjs` after
+fresh successful Single HTML and Progress workshops. Set `NIB_NATIVE_PARCEL_RESULT` and
+`NIB_NATIVE_PROGRESS_RESULT` to their result JSON files, `NIB_NATIVE_RUNTIME` to the pinned ZIP,
+`NIB_NATIVE_EVIDENCE` to a separate output folder, and `NIB_NATIVE_BACKEND` to the authored
+backend. `NIB_NATIVE_ROOT` selects a built editor distribution; omit it for source tools.
+The workshop launches unchanged packaged executables with unique application IDs, tests
+gameplay, save/relaunch/relocation, another ID, fullscreen, single instance and blocked URLs,
+and preserves its owned profiles for inspection. It never adopts an existing game profile.
+This is local Windows qualification, not signing, clean-machine or store certification.

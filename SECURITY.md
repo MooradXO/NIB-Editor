@@ -2,7 +2,7 @@
 
 ## Supported versions
 
-Security fixes target the latest stable release in the `1.0.x` line, currently **1.0.0**.
+Security fixes target the latest stable release in the `1.1.x` line, currently **1.1.0**.
 Older release candidates are superseded; upgrade to the stable release. No long-term support period is promised. Downloads and private vulnerability reporting are
 available at https://github.com/MooradXO/NIB-Editor.
 

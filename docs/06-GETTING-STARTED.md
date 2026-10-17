@@ -6,7 +6,7 @@ First follow [Install and launch](../GETTING_STARTED.md). The editor archive nee
 (Node.js 24 LTS recommended), but no dependency installation or engine build. Open
 [the editor](http://localhost:8670/editor/) after starting the local server.
 
-![The editor panels surrounding a game scene](media/racing.webp)
+![The editor panels surrounding a game scene](https://raw.githubusercontent.com/MooradXO/NIB-Editor/main/docs/media/racing.webp)
 
 ## Find your way around
 

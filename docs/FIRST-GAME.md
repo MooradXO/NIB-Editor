@@ -6,7 +6,7 @@ Build a small 3D game from **Empty 3D**. Move a blue cube with WASD, collect thr
 within 20 seconds, and retry after winning or losing. Your fastest successful time stays in local
 browser storage when available. This exercise uses no downloaded art or additional dependencies.
 
-![Collect Three running in NIB](media/first-game.webp)
+![Collect Three running in NIB](https://raw.githubusercontent.com/MooradXO/NIB-Editor/main/docs/media/first-game.webp)
 
 ## 1. Create the scene
 
@@ -31,7 +31,7 @@ Open **Scripts → + New Script**, name it **CollectThree**, and replace the gen
 the complete code below. Close the window, select **Player**, add **Script** in Inspector and choose
 **CollectThree**. Speed and Time Limit appear as editable parameters. Use positive values.
 
-![The project script editor](media/script-editor.webp)
+![The project script editor](https://raw.githubusercontent.com/MooradXO/NIB-Editor/main/docs/media/script-editor.webp)
 
 ```js
 class CollectThree extends NIB.Script {
