@@ -8,12 +8,16 @@ Create **Racing** from File > New Scene (Genres), save it as a project, and pres
 Start trial begins a three-second countdown. Complete two laps through seven ordered
 sectors. The finish screen records the best total time in browser storage on this device.
 Each recovery adds three seconds. Retry starts a new trial without changing the best.
+Times round to the nearest hundredth with minute carry (59.999 seconds displays
+1:00.00). Ranking and stored best times retain full precision. This correction is in
+newly created RaceManager scripts; existing authored script copies are not migrated.
 
 - W/S or arrows: accelerate, brake, then reverse. A/D or arrows: steer.
 - Space: handbrake. R: recover at the last cleared sector. C: cycle three cameras.
 - P: pause. M: sound. The on-screen buttons also provide recovery, retry, camera and sound.
-- Controls opens the engine's input menu; throttle/steering use the remappable move axes.
-  The four extra keyboard shortcuts are fixed. Physical gamepad/touch qualification is
+- Controls opens the engine's input menu; throttle/steering and handbrake are remappable.
+  The handbrake defaults to Space and takes priority over editor Pause. R, C and M
+  remain fixed shortcuts. Physical gamepad/touch qualification is
   outside this preset's desktop acceptance.
 
 The road is a closed Catmull-Rom circuit sampled into 224 segments, with a 12m surface,
@@ -74,6 +78,11 @@ The saved project contains all assets. No asset CDN is needed in Play or exports
 The editable ShooterManager contains combat and mission rules. Individual colliders,
 lights, player and model instances remain editable; the architecture GLB batches
 static sectors and shares textures, while named gate meshes move independently.
+Select Player to edit FPS Controller movement speed and mouse sensitivity; select
+Eyes to edit Camera Field of View. Play uses those saved settings. Sights smoothly
+reduce the starting field of view to 55/72 and sensitivity to 2/3, returning to the
+authored values when released. Stop restores the authored scene. These changes apply
+to newly created templates; existing projects retain their editable ShooterManager.
 For a different room layout, place your own imported GLB models, update the colliders,
 and keep mission triggers and consoles reachable. Editing the original procedural
 builder requires private source access and is not part of the downloaded Editor.

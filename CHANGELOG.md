@@ -7,6 +7,45 @@ follow Semantic Versioning. The `0.y.z` line represents initial development.
 
 ## [Unreleased]
 
+The separate Windows desktop application, project hub, draft recovery and signed
+full-runtime update/rollback path remain development artifacts. They are not
+included as a stable desktop installer in the browser-editor release. See
+[desktop development](docs/DESKTOP-DEVELOPMENT.md) for qualification and limits.
+
+## [1.1.0] - 2026-10-17
+
+### Changed
+
+- Improve scene authoring, selection/history, Play/Stop, panel layouts, asset refresh,
+  project transfers, external script conflicts, backup and recovery workflows.
+- Extend the documented authoring workflows for materials, terrain and foliage,
+  effects, rigs, animation graphs, retargeting, Timeline, game UI and localization.
+- Improve runtime contracts for entities/components, scene transitions, cameras,
+  input/actions, physics, navigation, animation, audio and resource ownership.
+- Improve WebGL2/WebGPU rendering, HDRI refresh, shader boundaries, visibility,
+  batching and effect lifecycle handling. Camera-only motion blur supports
+  perspective views of depth-writing surfaces; independent object velocity is not computed.
+- Improve model/asset import, standalone HTML and Web Project exports, native game
+  packaging and optional MCP authoring. Preserve clear import/export failure reports.
+- Refresh the built-in preset workflows and expand reference documentation with
+  concrete supported scenarios, validation behavior and remaining limitations.
+- Update qualified build dependencies and retain the free proprietary distribution
+  model: compiled editor and embedded game runtime, with private source history.
+
+### Compatibility and limits
+
+- Back up projects and extract 1.1.0 into a separate folder before copying them.
+  Test save/reopen and an independent game export before retiring the old installation.
+  Corrected behavior and stricter validation can affect projects relying on defects
+  or invalid data. See [upgrades](docs/PUBLISHING.md#upgrade-the-editor).
+- The download remains a browser-editor ZIP requiring Node.js 22.12 or newer and
+  desktop Chromium. A stable desktop installer is not part of this release.
+- Hardware/browser coverage is scoped; Linux/macOS desktop acceptance, physical
+  touch/gamepad coverage, clean Windows VM, power-loss and physical VRAM checks
+  are not implied. See [compatibility](docs/COMPATIBILITY.md).
+- No multiplayer, cloud accounts, mobile/store services or public npm SDK are introduced.
+  Previous release archives, licenses and third-party notices remain available.
+
 ## [1.0.1] - 2026-10-06
 
 ### Fixed

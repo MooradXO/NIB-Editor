@@ -1,5 +1,13 @@
 # NIB MCP — AI control for the editor
 
+Scene edits and atomic batches refuse while another scene/resource/duplicate/save
+operation is pending. Retry after it finishes. They recheck write access and command
+deadline after waiting and before commit; a late refusal rolls back supported scene
+edits. Input remains locked through rollback. Expiry is cooperative, not a hard
+interrupt of arbitrary JavaScript or I/O. Atomic mode excludes file/script/resource
+writes and Play; use separate calls for those. Generated-child selection clears if
+rollback recreates the child; it never selects a different object by the same name.
+
 The Model Context Protocol (MCP) server lets a compatible local client control the NIB editor.
 It can **build scenes, write scripts, create VFX, run play tests with error reports, and inspect
 screenshots** directly in the open browser editor. The current server exposes **62 tools**; the
@@ -40,6 +48,28 @@ The client can call `get_scene` → `create_effect("fire")` → `screenshot` /
 ---
 
 ## Tools
+
+### Selecting the exact entity
+
+`list_entities` and `get_scene.entities` return a `ref` object beside every visible
+entity name. Copy that object into any `entity` argument, or the `parent` argument
+of `create_entity` / `create_terrain`, for example:
+
+```json
+{ "entity": { "id": "copy-the-exact-id-from-ref" }, "position": [3, 1, 0] }
+```
+
+A string still selects a unique name. An ambiguous name now refuses the operation
+instead of changing the first matching object. References remain valid across Rename
+and authored Undo/Redo within the current editor session. Deleted, replaced or other
+scene entities are refused; read again after opening a project, reloading, entering
+Play or rebuilding generated prefab/model children. Stop returns to the authored
+scene and its references. References are not saved in project or export data.
+`get_scene.selectedRef` identifies the primary selection. Creation tools retain their
+existing name responses; call `list_entities` to obtain the new entity's reference.
+
+This addresses MCP command targets only. Saved Timeline `target` strings and game
+scripts keep their existing runtime name lookup; use unique names there or `self`.
 
 ### Read
 
@@ -125,13 +155,16 @@ Animate entity properties with keyframes for cutscenes. Add a `Timeline` compone
 the director entity; animation runs in Play mode and exported games. Supported properties
 include `position`, `position.x`, `scale`, and `quaternion`, with number, vec3, quat,
 and color values. The editor exposes a track-based keyframe panel on the Timeline tab.
+Vector/quaternion/color array channels must be finite numbers, including alpha when
+provided. Invalid channels refuse the entire key edit before history or data changes;
+omitted color alpha defaults to 1. Scalar numeric-string coercion remains supported.
 
 | Tool | Purpose | Arguments |
 |---|---|---|
 | `create_timeline` | Add a Timeline component to an entity | `entity?`, `duration?`, `loop?`, `autoplay?`, `speed?` |
 | `timeline_add_track` | Add a target/property/value-type track. Returns `trackIndex` | `entity?`, `target` (name or `self`), `property`, `valueType` (number/vec3/quat/color) |
-| `timeline_set_keyframe` | Add a key to a track. `value` is a number or type-specific array; `ease` controls the transition after this key | `entity?`, `track`, `t`, `value`, `ease?` |
-| `play_timeline` | Start playback in Play mode, or pass `time` to scrub/preview | `entity?`, `time?` |
+| `timeline_set_keyframe` | Set a key: replace the first key in this track within a strict time difference of `< 0.0001` seconds (keep its time), otherwise add one. Omitted `ease` preserves existing easing or defaults to `linear` for a new key. `value` is a number or type-specific array; `ease` controls the transition after this key | `entity?`, `track`, `t`, `value`, `ease?` |
+| `play_timeline` | Edit: temporary panel preview with play/pause/seek/stop; stop restores authored values. Play: runtime control, stop holds pose. Reports potential Timeline conflicts. Defaults to seek with time, otherwise play. | `entity?`, `action?`, `time?` (finite seconds >= 0, seek only) |
 
 ### Terrain
 
@@ -141,8 +174,18 @@ export. Use the editor's ⛰ brush for manual sculpting.
 
 | Tool | Purpose | Arguments |
 |---|---|---|
-| `create_terrain` | Create a heightmap terrain entity | `size?` (metres, default 40), `resolution?` (vertices per side, default 64), `name?`, `position?`, `parent?` |
-| `terrain_raise` | Raise or lower a circular terrain area with falloff | `entity?`, `x?`, `z?` (centre in local metres), `radius`, `amount` (negative lowers) |
+| `create_terrain` | Create a heightmap terrain entity | `size?` (finite 0.01–100000 local metres, default 40), `resolution?` (integer 2–513 vertices per side, default 64), `name?`, `position?`, `parent?` |
+| `terrain_raise` | Raise or lower with smoothstep falloff; finite numeric input, atomic refusal on Float32 overflow, no history/geometry/navigation change for empty stamps | `entity?`, `x?`, `z?`, positive `radius`, `amount` (negative lowers), all in local metres; `verticesTouched` counts changed heights |
+
+Creation refuses null, numeric strings, fractional resolutions and out-of-range values before
+allocating geometry or changing selection/history. Omit a field to use its default. These are
+editor allocation bounds, not a world-size or performance guarantee; existing serialized grids
+and direct runtime construction retain their previous behavior. To revise an authored grid, use
+**Resample grid…** in the Terrain Inspector; Cancel and an unchanged grid preserve Redo.
+
+When `paint_surface` creates its component or changes layer settings, history records the
+structure before the pixel patch. Undo the pixels, then the structural change. Existing-layer
+strokes keep their single patch step. This lets later scene edits reconstruct the painted surface.
 
 ### Components
 
@@ -177,9 +220,24 @@ export. Use the editor's ⛰ brush for manual sculpting.
 
 | Tool | Purpose | Arguments |
 |---|---|---|
-| `play_test` | Run the game for N seconds and return script/console errors, FPS, draw calls, triangles, and entity count. This is the primary verification tool | `seconds?` (default 4, maximum 30) |
-| `screenshot` | Return a JPEG viewport screenshot for visual inspection | — |
+| `play_test` | Start an owned temporary Play from idle Edit, advance accelerated frames, then Stop. Inspect `ok`, `restored`, `framesRun`, `scriptErrors`, `runtimeErrors`, `consoleErrors` and `failures`. Existing Play/paused games and busy authoring refuse without being stopped | `seconds?` (default 4, 1/60 to 30) |
+| `screenshot` | Return JPEG GPU-canvas pixels without simulation; follows Edit or Scene View camera. DOM panels and game HUD are excluded | — |
 | `eval_js` | Run arbitrary JavaScript in the editor context with `app` (EditorApp), `NIB` (engine), `engine`, and `scene` available. Code runs inside an async function, so use `return` | `code` |
+
+For a diagnostic pass, apply your script draft, finish previews, then call
+`play_test({seconds: 2})`. Normal Play preparation saves writable projects; a failed
+Save or start returns `ok:false` with zero frames. Read-only Play skips Save.
+The report includes runtime and cleanup errors, even if the MCP call itself succeeds.
+Repair the reported script, repeat the test, then use normal Play and `screenshot` /
+read-only `eval_js` observations to inspect the running game. Stop before another test.
+
+The frame budget is accelerated at 60 Hz, with immediate promise checkpoints. Reported
+FPS is not a performance measurement; delayed timers, networking and audible playback
+require normal real-time Play. Scripts still own their timers, DOM and async cleanup.
+The test stops only its captured runtime; a changed editor owner is left untouched and
+reported as a failure. Cancellation/deadlines cannot interrupt synchronous JavaScript
+or an in-flight save. `eval_js` has no sandbox, transaction or automatic side-effect
+cleanup; after timeout or cancellation, inspect current state before retrying.
 
 ### Import and delivery
 
@@ -189,6 +247,22 @@ export. Use the editor's ⛰ brush for manual sculpting.
 | `export_game` | Build a reproducible standalone HTML file or ZIP project and publish the verified artifact to `Builds/` in a writable folder project through a private temporary file, file `fsync`, and exclusive commit. The path is deterministic for `name` and `operationId`; an unrelated existing file is never overwritten. The response includes `path`, `bytes`, `sha256`, `fileCount`, and `integrity`. After a lost response, retry with the same format/name, unchanged exporter state (identical bytes), and `operationId`; a changed path or payload receives `EOPID` | `format` (`html`\|`project`), `operationId`, `name?` |
 
 ### Batch
+
+`export_game` reads the applied authored state, including the active scene and saved level
+inventory. Apply or revert script drafts and finish Play/authoring operations first. It
+captures the source project before paint persistence and keeps source consistency checks
+through the full-artifact hash and storage receipt. A changed owner or source refuses
+success; retry from the intended project after finishing edits.
+
+The receipt's `sha256` and `bytes` describe the entire HTML or ZIP at publication; `integrity`
+in a project receipt describes its source components. Neither is a signature or a promise
+that an external writer cannot later change the file. Keep the `operationId`, format and
+name when recovering a lost response. An unchanged retry reuses the same file and receipt;
+`recovered: true` identifies server journal recovery, while a retry in the same live server
+can retain `recovered: false`. A missing/replaced committed file is refused. Use a new ID
+for a changed build. If source/owner changes after storage has already committed, the call
+refuses success but leaves that artifact intact; it never deletes a final path on failure.
+Save the authoring project separately when its current working state must also be persisted.
 
 | Tool | Purpose | Arguments |
 |---|---|---|
@@ -235,9 +309,22 @@ EditorApp API — scene, component registry, scripts, assets, rendering
   `{connected, queued, pending}`.
 - On reload or close, a tab releases only its exact session through `/release`.
   Manual unauthenticated `/takeover` is no longer needed and is rejected.
+- Session bootstrap, result and beacon-release JSON bodies must be objects.
+  Null, arrays and primitives return HTTP 400; an invalid body does not create a
+  session or consume a pending command. Bearer-authenticated release needs no body.
+- After a server restart the browser retries, obtains fresh credentials and resumes
+  polling. Old credentials and old queued commands are not transferred to the new
+  server or another tab. A second tab waits until the active owner releases or expires;
+  after handoff, read `project_info` before editing to confirm the target project.
 - The bridge starts automatically and quietly waits for the server with backoff
   from 3 to 30 seconds, so startup order does not matter.
 - Screenshots return as MCP `image` content (JPEG); everything else is JSON text.
+- A stdio `notifications/cancelled` notification with the original `requestId`
+  aborts that pending tool response and removes an undelivered command from the
+  queue. Unknown or completed IDs are ignored. Cancellation is advisory once
+  a command has reached the editor: it does not roll back an already executed
+  mutation or interrupt arbitrary `eval_js` code. Read the current state before
+  retrying a mutation whose response was cancelled.
 - Standard commands time out after 30 seconds, `new_scene` and `screenshot` after
   45 seconds, `import_asset` after 60 seconds, and `export_game` after 180 seconds.
   Deadline and lock are checked immediately before the synchronous final commit.

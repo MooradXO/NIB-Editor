@@ -8,10 +8,15 @@ participate in Undo/Redo and travel with the scene through both game exports.
 
 The size report reads source bytes and image headers without uploading the project to the GPU.
 It lists project assets, each level's declared dependencies, dimensions, and large files first.
-PNG, JPEG, GIF and WebP headers and embedded glTF images are inspected. Unrecognized images,
+PNG, JPEG, GIF, WebP and Radiance HDR headers and embedded glTF images are inspected. HDR
+panoramas use RGB32F (12 bytes per pixel); a declared image used as the scene's sky also adds
+its retained RGB32F panorama to the ordinary RGBA8 preload estimate. Unrecognized images,
 unavailable built-in bytes and external model resources are marked unknown. A report with unknown
 entries is a lower bound. Header inspection is an estimate, not image validation; runtime checks
-use the decoded dimensions. Use **Level Resources** to declare assets loaded by custom scripts.
+use the decoded dimensions. Additional sampling variants or script-selected panorama/LUT roles
+can increase runtime usage beyond this report. Use **Level Resources** to declare assets loaded
+by custom scripts. Reports capture the current project/scene and reject a change of owner during
+inspection. Saving settings clears the previous report; refresh before downloading it again.
 
 | Setting | Default | Behavior |
 | --- | --- | --- |
@@ -30,7 +35,7 @@ These limits apply to content acquired by one managed level adapter. They are **
 VRAM or whole-process memory limits**. The source metric counts unique content, not total network
 traffic. HTTP compression, browser caches, intermediate decode buffers, CPU mesh arrays, decoded
 audio, generated textures, render targets and driver allocations have different sizes. The editor
-retains source blobs for the whole project. Managed Radiance HDR panoramas count 12 decoded bytes
+retains source blobs for the whole project. Managed Radiance HDR and image panoramas count 12 decoded bytes
 per pixel against the texture budget; generated environment maps are still excluded. Script code that
 uses its own fetch or renderer allocations bypasses this managed path.
 
@@ -41,6 +46,13 @@ scanline are validated before decoded storage is allocated. Editor, library asse
 exports further restrict dimensions to the active GPU's maximum texture size. Use a smaller panorama
 if a limit is exceeded; file size alone does not predict decoded size. This is a per-image decode bound,
 not a total editor-memory or physical VRAM guarantee. Failed loads do not retain budget reservations.
+
+When Block refuses a level, its message identifies the metric, actual value and configured limit.
+Retry repeats the same saved policy; it does not waive a limit. Stop, open the target scene, correct
+its Content loading settings and save, then Play again or rebuild the export. Image panoramas are
+checked before Canvas2D readback and RGB32F conversion; browser image decoding happens earlier.
+Successful dynamic loads in the active level also refresh the resource totals and warning surface.
+Loads from retired levels cannot replace that status; a pending candidate retains its own progress.
 
 During a transition the current level and candidate coexist until the candidate is ready. Each
 level has its own budget; shared assets can temporarily exist twice. Runtime loading status exposes
@@ -65,6 +77,13 @@ calls cannot be interrupted in the middle. Cancellation discards their late resu
 publication; it does not promise to stop the browser's underlying decoder. Arbitrary external
 effects made by user scripts still require their own `onDestroy` cleanup.
 
+Closing the game during a scene-change, activation or cleanup callback is terminal.
+The in-flight transition rejects with expected `LEVEL_CANCELLED`; it cannot publish a
+ready level after disposal. A late cancelled builder releases its own scene and assets
+without changing a newer game. Cleanup is idempotent for each managed owner. Retain the
+handles for your own timers, subscriptions and voices in the script and release them in
+`onDestroy`; the component's `engine` is only available while its scene is active.
+
 Game scripts can call `await this.levels.cancel()` and inspect `this.levels.status`. A cancelled
 transition rejects with the expected `LEVEL_CANCELLED` error. Handle it when starting transitions:
 
@@ -87,3 +106,15 @@ round trips, false response headers, stream cancellation, texture/model/audio li
 event-loop progress, cancellation/retry and disposal of late results. Browser checks must also
 exercise the actual editor and independently served Single HTML and built ZIP on both backends.
 Do not infer pixels, network cancellation or physical memory from headless counters alone.
+
+Private-source `tools/visual-regression/content-loading-workshop.mjs` authors ContentLab through
+real imports, Add, Scripts, Inspector and Content loading. It checks report JSON, invalid settings,
+Undo/Redo, browser/folder persistence, measured Warn/Block/progress, correction and independent
+offline HTML/production Web. Set `NIB_CONTENT_EVIDENCE`, optional `NIB_CONTENT_ROOT` and
+`NIB_CONTENT_BACKEND`; build the matching export runtime first. These estimates are not VRAM.
+
+Private-source `tools/visual-regression/cancellation-workshop.mjs` provides CancelLab:
+native image-decode completion after Cancel/Stop, staged scene and environment cancellation,
+Retry/Back cycles, terminal disposal from a scenechange callback and independent HTML/Web.
+Use NIB_CANCEL_EVIDENCE, optional NIB_CANCEL_ROOT/NIB_CANCEL_BACKEND. Its resource counts
+describe owned objects and handles, not browser heap reclamation or physical GPU memory.

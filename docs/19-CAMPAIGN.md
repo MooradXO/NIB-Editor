@@ -94,8 +94,10 @@ including physics; no browser timers advance game rules behind the pause screen.
 
 Game UI calls `onUIAction(value)`. It dispatches New/Continue/Save/Pause/Menu/Retry. `travel` awaits
 the existing `this.levels.goto(filename)` service. It prevents duplicate requests, prepares the
-destination checkpoint, and restores the prior checkpoint after a failed transition when one
-exists. The current scene remains available for retry. No permanent global DOM is created by the
+destination checkpoint in the current Engine's memory, and writes it to local storage only after
+the destination has loaded successfully. Failure or cancellation restores the prior slot, including
+an empty slot, without replacing durable progress. The current scene remains available for retry.
+No permanent global DOM is created by the
 script: Game UI owns its view and removes it during transitions and Stop.
 
 `onDestroy` stops scene-owned music, water, and effect voices, invalidates the script, and removes
@@ -140,6 +142,14 @@ That optional workflow uses the Single HTML export and keeps its own persistent 
 For relay geometry exercises, use the separate scene records in an exported web project or an
 older folder campaign. In a scene preset, those same records live in `gameLevels.scenes` in the
 saved scene JSON; the editor's current scene is the menu.
+
+Make a backup before editing bundled JSON. Stop and save, close the project, edit
+the appropriate `gameLevels.scenes["relay-N.nibscene.json"]` record in the saved
+scene file, and reopen the project. Component values are in that record's entity
+`components[].data`; changing a similarly named object in the menu does not
+change a relay. Use a new voyage or the matching checkpoint to test the edited
+relay, then save and export. If you prefer Inspector editing, open the separate
+relay scene from an exported Web Project or an older folder campaign.
 
 1. Change the courier's TopDownController2D speed in Inspector, save, and verify wall collision
    and pickup reach in Play. Stop should restore the authored transforms.

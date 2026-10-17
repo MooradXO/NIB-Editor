@@ -1,6 +1,23 @@
 # NIB documentation
 
-**NIB 1.0.1 · stable** · [Download](https://github.com/MooradXO/NIB-Editor/releases/latest) · [Home](../README.md) · [Ask a question](https://github.com/MooradXO/NIB-Editor/discussions)
+**NIB 1.1.0 · stable** · [Published downloads](https://github.com/MooradXO/NIB-Editor/releases/latest) · [Home](../README.md) · [Ask a question](https://github.com/MooradXO/NIB-Editor/discussions)
+
+These guides accompany the 1.1.0 browser-editor build.
+
+## Development and release channels
+
+| Channel | Identity and documentation scope |
+| --- | --- |
+| Browser editor 1.1.0 | The compiled ZIP and matching guides distributed through [NIB-Editor](https://github.com/MooradXO/NIB-Editor/releases/tag/v1.1.0). See the [1.1.0 changelog](../CHANGELOG.md#110---2026-10-17). |
+| Private main | The accepted source commit and CI identify the source build. Source/package instructions do not imply a public SDK. |
+| Local desktop development | [NIB Desktop Development](DESKTOP-DEVELOPMENT.md), Windows x64, separate profile and signed development artifacts; no stable desktop installer is included in the browser ZIP. |
+
+Record the source commit and artifact SHA-256 when qualifying a build. Building a
+publication candidate does not upload it or change GitHub Latest. Historical 1.0.1
+downloads retain their original bytes. Measured coverage and remaining limits are
+listed in [Compatibility](COMPATIBILITY.md#private-development-coverage).
+
+## Build your first game
 
 Build your first game, explore the examples, then use the reference for a particular tool.
 These guides describe the downloadable Editor. No source checkout or public npm SDK is needed.
@@ -13,7 +30,7 @@ These guides describe the downloadable Editor. No source checkout or public npm 
 4. [Write game scripts](SCRIPTING.md) — lifecycle, parameters, input, entities, UI and cleanup.
 5. [Explore the preset gallery](PRESETS.md) — ten games, six showcases and two empty templates.
 
-![NIB editor running Port Azure](media/racing.webp)
+![NIB editor running Port Azure](https://raw.githubusercontent.com/MooradXO/NIB-Editor/main/docs/media/racing.webp)
 
 ## Build a game
 

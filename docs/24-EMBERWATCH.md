@@ -35,6 +35,12 @@ frames and three cast/attack frames. Only Play creates temporary bolts, enemies,
 shadows and effects. Retry clears the run state and restores the complete wave
 schedule, vitality, pulse and dash.
 
+Damage feedback covers the complete game canvas, including after resizing or
+exporting. In an older authored scene with a displaced flash, select **Damage tint**
+and set both UI pivot values to zero; keep the full stretch anchors and zero
+width/height offsets. New Emberwatch and Relay Foundry scenes use these values.
+Existing projects are not automatically rewritten.
+
 The artwork is rendered from KayKit CC0 source models, with original courtyard
 composition, lighting and additional stonework. Rune/flame graphics and PCM audio
 are original preset code. See [the license inventory](../THIRD-PARTY-LICENSES.txt)

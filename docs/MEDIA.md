@@ -16,5 +16,5 @@ Blade Showcase attribution: **Katana models generated with Meshy AI — CC BY 4.
 supplied by MooradXO; geometry and textures were modified for NIB.**
 [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). The image depicts those models in the editor.
 
-[Media inventory](media/manifest.json) records exact file sizes and SHA-256 checksums. These images
+[Media inventory](https://raw.githubusercontent.com/MooradXO/NIB-Editor/main/docs/media/manifest.json) records exact file sizes and SHA-256 checksums. These images
 do not grant standalone redistribution rights to the engine/editor or replace an asset's own terms.
